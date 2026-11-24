@@ -156,7 +156,8 @@ h1, h2, h3 { text-wrap: balance; font-weight: 400; }
 .check-head .display { max-width: 14em; }
 .check-head .small { max-width: 26em; }
 .schema { position: relative; margin: clamp(28px, 3vw, 44px) var(--pad) 0; }
-.schema .ph { aspect-ratio: 2 / 1; background: #F0EFF1; }
+.schema .ph { aspect-ratio: 2 / 1; background: transparent; }
+.schema .ph:not(:has(img)) { background: #F0EFF1; }
 .schema .ph img { object-fit: contain; }
 .callout {
   position: absolute; width: min(220px, 24%);
@@ -173,10 +174,11 @@ h1, h2, h3 { text-wrap: balance; font-weight: 400; }
 .callout::after { /* fil de repère vers la pièce */
   content: ""; position: absolute; border: 1px dashed #B9B5BE; pointer-events: none;
 }
-.c1 { left: 52%; top: -6%; }   .c1::after { left: -60px; top: 50%; width: 60px; height: 70px; border-right: 0; border-bottom: 0; }
-.c2 { left: 0; bottom: 4%; }   .c2::after { left: 30%; bottom: 100%; width: 0; height: 60px; border-left: 0; }
-.c3 { right: 0; top: 8%; }     .c3::after { right: 100%; top: 50%; width: 50px; height: 0; border-bottom: 0; }
-.c4 { right: 6%; bottom: -4%; } .c4::after { right: 100%; top: 50%; width: 70px; height: 0; border-bottom: 0; }
+/* positions calées sur le dessin 03 (connecteurs en L vers la pièce) */
+.c1 { left: 40%; bottom: -3%; }  .c1::after { left: 85%; bottom: 100%; width: 0; height: 36px; border-left: 0; }
+.c2 { left: 0; bottom: 2%; }     .c2::after { left: 50%; bottom: 100%; width: 60px; height: 96px; border-right: 0; border-bottom: 0; }
+.c3 { right: 0; top: 4%; }       .c3::after { right: 100%; top: 50%; width: 70px; height: 110px; border-right: 0; border-bottom: 0; }
+.c4 { right: 0; bottom: 2%; }    .c4::after { left: 30%; bottom: 100%; width: 0; height: 60px; border-left: 0; }
 @media (hover: hover) and (pointer: fine) { .callout[aria-pressed="false"]:hover { border-color: var(--violet); } }
 
 /* ---------- Grille « Prochains arrivages » ---------- */
@@ -435,7 +437,7 @@ dialog::backdrop { background: rgb(30 26 34 / .42); }
 
     <div class="proofs" aria-label="Nos engagements">
       <figure class="ph" data-label="Image 02 — voiture de trois quarts avant">
-        <img src="assets/02-trois-quarts.webp" width="1600" height="900" alt="Le break rouge vu de trois quarts avant, en studio" loading="lazy" onerror="this.remove()">
+        <img src="assets/02-trois-quarts.webp" width="1672" height="941" alt="Porsche Panamera Sport Turismo rouge vue de trois quarts avant, en studio" loading="lazy" onerror="this.remove()">
       </figure>
       <div class="proof"><p class="proof-text"><svg aria-hidden="true"><use href="#i-mark"/></svg>Plus de 300 voitures livrées depuis 2019</p><span class="proof-line" aria-hidden="true"></span></div>
       <div class="proof"><p class="proof-text"><svg aria-hidden="true"><use href="#i-mark"/></svg>Votre reprise estimée en 30&nbsp;minutes</p><span class="proof-line" aria-hidden="true"></span></div>
@@ -452,7 +454,7 @@ dialog::backdrop { background: rgb(30 26 34 / .42); }
       </div>
       <div class="schema">
         <figure class="ph" data-label="Image 03 — dessin technique de la voiture">
-          <img src="assets/03-schema.webp" width="2000" height="1000" alt="Dessin technique au trait d’une voiture sur pont élévateur, roues et moteur détaillés" loading="lazy" onerror="this.remove()">
+          <img src="assets/03-schema.webp" width="1774" height="887" alt="Dessin technique d’un break sur pont élévateur, avant écorché montrant le moteur, la suspension et le disque de frein" loading="lazy" onerror="this.remove()">
         </figure>
         <div class="callouts" role="group" aria-label="Étapes du contrôle">
           <button class="callout c1" type="button" aria-pressed="true"><svg aria-hidden="true"><use href="#i-dot"/></svg><b>Freinage</b><span>Disques et plaquettes mesurés, remplacés au-delà de 50&nbsp;% d’usure.</span></button>
