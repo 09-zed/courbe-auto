@@ -3,7 +3,7 @@
 Déposez chaque image dans `assets/` sous le nom indiqué : elle remplace automatiquement la case réservée du site (rien d’autre à modifier).
 Format conseillé : WebP (ou JPG en gardant le même nom de base, et on adapte). Les prompts sont en anglais, c’est ce qui marche le mieux avec les générateurs.
 
-**Déjà intégrées :** 02, 03, 04, 05, 06, 07, 09, 10, 11. **Reste à faire :** 08.
+**Toutes les images sont intégrées** (01 à 11, hero en HD compris).
 
 Direction commune à toutes les photos : photo produit automobile, studio, lumière douce et diffuse, sol légèrement réfléchissant, couleurs fidèles, pas de texte, pas de plaque lisible, pas de personnes.
 
