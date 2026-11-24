@@ -89,6 +89,7 @@ h1, h2, h3 { text-wrap: balance; font-weight: 400; }
   background: repeating-linear-gradient(135deg, transparent 0 14px, rgb(0 0 0 / .035) 14px 15px);
 }
 .ph img { position: relative; width: 100%; height: 100%; object-fit: cover; }
+.ph:has(img)::before { content: none; }
 
 /* ---------- Header ---------- */
 .header {
@@ -232,7 +233,7 @@ h1, h2, h3 { text-wrap: balance; font-weight: 400; }
 @media (hover: hover) and (pointer: fine) { .arrows button:hover { background: #fff; } }
 
 /* ---------- Bandeau orange ---------- */
-.band { position: relative; display: grid; grid-template-columns: 1.15fr 1fr; background: var(--accent); color: #fff; overflow: hidden; }
+.band { position: relative; display: grid; grid-template-columns: 1.15fr 1fr; background: #EC4302; color: #fff; overflow: hidden; }
 .band-text { display: flex; flex-direction: column; justify-content: space-between; gap: 40px; padding: clamp(40px, 4.4vw, 64px) var(--pad) var(--pad); }
 .band .display { max-width: 13em; }
 .band-form { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px 24px; }
@@ -250,7 +251,13 @@ h1, h2, h3 { text-wrap: balance; font-weight: 400; }
 .band .err:empty { display: none; }
 .band .note { font-size: 14px; line-height: 1.45; max-width: 24em; color: rgb(255 255 255 / .92); align-self: center; }
 .band .ok { font-size: 18px; letter-spacing: -0.01em; }
-.band .ph { background: #D94003; height: 100%; min-height: 280px; }
+/* l’illustration couvre tout le bandeau : sa moitié gauche est un aplat orange sous le texte */
+.band .ph { position: absolute; inset: 0; z-index: 0; background: #EC4302; }
+.band .ph { display: flex; justify-content: flex-end; }
+.band .ph img { width: auto; height: 100%; max-width: none; object-fit: contain; }
+.band .ph:not(:has(img)) { position: relative; inset: auto; min-height: 280px; background: #D94003; }
+.band-text { position: relative; z-index: 1; }
+.band-spacer { min-height: clamp(340px, 31vw, 460px); }
 .band .ph::before { color: #FFE1D3; background: none; }
 
 /* ---------- Dernières arrivées ---------- */
@@ -264,9 +271,9 @@ h1, h2, h3 { text-wrap: balance; font-weight: 400; }
 .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--pad) 12px; margin-top: 20px; }
 .cards .ph { aspect-ratio: 8 / 7; }
 .latest-top .card .ph { background: #CBC9CC; }
-.cards .card:nth-child(1) .ph { background: var(--card-grey); }
-.cards .card:nth-child(2) .ph { background: var(--card-sage); }
-.cards .card:nth-child(3) .ph { background: var(--card-sand); }
+.cards .card:nth-child(1) .ph { background: #B4B2B0; }
+.cards .card:nth-child(2) .ph { background: #A0A596; }
+.cards .card:nth-child(3) .ph { background: #E0C3AD; }
 .card-cap { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 4px; font-size: 14px; }
 .card-cap p { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .card-cap span { color: var(--ink-2); margin-left: 6px; }
@@ -371,7 +378,9 @@ dialog::backdrop { background: rgb(30 26 34 / .42); }
   .tile { order: 2; min-height: 0; }
   .tile:nth-child(odd) { border-right: 1px solid var(--rule); }
   .carousel { min-height: 0; aspect-ratio: 7 / 4; }
-  .band .ph { min-height: 200px; }
+  .band .ph { position: relative; inset: auto; aspect-ratio: 16 / 9; }
+  .band .ph img { width: 100%; object-fit: cover; object-position: 85% center; }
+  .band-spacer { display: none; }
   .cards { grid-template-columns: 1fr 1fr; }
   .row { grid-template-columns: minmax(0, 1fr) auto 5rem; row-gap: 2px; }
   .row .km, .row .year { display: none; }
@@ -520,8 +529,9 @@ dialog::backdrop { background: rgb(30 26 34 / .42); }
           <p class="note">Un e-mail quand une voiture entre à l’atelier. Deux par mois au plus, désinscription en un clic.</p>
         </form>
       </div>
+      <div class="band-spacer" aria-hidden="true"></div>
       <figure class="ph" data-label="Image 07 — illustration isométrique orange">
-        <img src="assets/07-bandeau.webp" width="1200" height="1000" alt="" loading="lazy" onerror="this.remove()">
+        <img src="assets/07-bandeau.webp" width="1672" height="941" alt="" loading="lazy" onerror="this.remove()">
       </figure>
     </div>
 
