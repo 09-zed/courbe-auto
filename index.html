@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Courbe Automobiles — Véhicules d’occasion sélectionnés à Lyon</title>
+<meta name="description" content="Courbe Automobiles, concession à Lyon : une sélection de voitures d’occasion révisées et garanties 12 mois. Consultez le stock et réservez un essai.">
+<meta name="theme-color" content="#EAE8EB">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;800&display=swap">
+<link rel="preload" as="image" href="assets/hero-break-rouge.webp">
+<style>
+:root {
+  color-scheme: light;
+  --bg: #EAE8EB;          /* gris studio du hero */
+  --surface: #F3F2F4;     /* champs, survols */
+  --ink: #0B0B0C;         /* noir du logotype */
+  --ink-2: #4A484D;       /* texte secondaire (7,9:1 sur --bg) */
+  --rule: #C9C6CC;        /* filets, teintés vers le fond */
+  --accent: #EC4603;      /* orange du bouton « Voir les véhicules » */
+  --accent-press: #C93B02;
+  --error: #B42309;
+
+  --gutter: 16px;
+  --pad: clamp(20px, 2.6vw, 36px);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --font: "Hanken Grotesk", "Helvetica Neue", Helvetica, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 80px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { text-wrap: balance; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 1px; }
+
+.skip {
+  position: absolute; left: var(--gutter); top: -60px; z-index: 20;
+  background: var(--ink); color: var(--bg); padding: 10px 14px; text-decoration: none;
+}
+.skip:focus { top: 12px; }
+
+/* ---------- Arrow icon (même trait partout) ---------- */
+.arrow { width: .72em; height: .72em; flex: none; }
+
+/* ---------- Header ---------- */
+.header {
+  position: sticky; top: 0; z-index: 10;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  height: 64px; padding: 0 calc(var(--gutter) + 14px);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(1.2) blur(10px);
+  -webkit-backdrop-filter: saturate(1.2) blur(10px);
+}
+.logo { display: inline-flex; width: 46px; height: 44px; align-items: center; text-decoration: none; }
+.logo svg { width: 46px; height: auto; }
+.nav { display: flex; gap: clamp(20px, 3.4vw, 46px); }
+.nav a, .header-cta {
+  text-decoration: none; font-size: 17px; letter-spacing: -0.01em;
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px;
+}
+.nav a { color: var(--ink); }
+.header-cta { justify-self: end; font-weight: 600; }
+@media (hover: hover) and (pointer: fine) {
+  .nav a:hover, .header-cta:hover { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; }
+}
+
+/* ---------- Hero ---------- */
+.hero-media {
+  margin: 0 var(--gutter);
+  aspect-ratio: 1364 / 470;
+  overflow: hidden;
+  background: #AEB6B8;
+}
+.hero-media img { width: 100%; height: 100%; object-fit: cover; }
+.split {
+  display: grid; grid-template-columns: 1fr 1fr;
+  margin: 0 var(--gutter);
+}
+.split > * { padding: var(--pad); min-width: 0; }
+.split > * + * { border-left: 1px solid var(--rule); }
+
+.hero-split > :first-child { padding-top: clamp(28px, 3vw, 44px); padding-bottom: clamp(48px, 6vw, 80px); }
+.wordmark {
+  font-weight: 800;
+  font-size: clamp(64px, 11.2vw, 168px);
+  line-height: .86;
+  letter-spacing: -0.055em;
+  margin-left: -0.04em;
+}
+.wordmark small {
+  display: block;
+  font-weight: 400;
+  font-size: clamp(24px, 3vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-top: .45em;
+  margin-left: .06em;
+}
+.hero-split > :last-child { padding-top: clamp(36px, 3.6vw, 52px); }
+.lead {
+  font-weight: 400;
+  font-size: clamp(32px, 4.6vw, 66px);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  max-width: 11.5em;
+}
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 50px; padding: 0 22px;
+  border: 0; border-radius: 0;
+  background: var(--accent); color: #fff;
+  font-size: 19px; font-weight: 500; letter-spacing: -0.015em;
+  text-decoration: none; cursor: pointer;
+  touch-action: manipulation;
+  transition: transform 160ms var(--ease-out), background-color 160ms var(--ease-out);
+}
+.btn:active { transform: scale(0.97); background: var(--accent-press); }
+@media (hover: hover) and (pointer: fine) { .btn:hover { background: var(--accent-press); } }
+.btn:focus-visible { outline-color: var(--ink); }
+.hero-split .btn { margin-top: clamp(28px, 3.4vw, 48px); }
+
+/* Seul moment orchestré : l’arrivée du hero */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-media img { animation: settle 1100ms var(--ease-out) both; }
+  .wordmark, .lead, .hero-split .btn { animation: rise 700ms var(--ease-out) both; }
+  .lead { animation-delay: 90ms; }
+  .hero-split .btn { animation-delay: 160ms; }
+  @keyframes settle { from { transform: scale(1.04); opacity: 0; } to { transform: none; opacity: 1; } }
+  @keyframes rise { from { transform: translateY(14px); opacity: 0; } to { transform: none; opacity: 1; } }
+}
+
+/* ---------- Sections ---------- */
+.section { border-top: 1px solid var(--rule); margin: 0 var(--gutter); }
+.section-head > :first-child { padding-bottom: clamp(24px, 3vw, 40px); }
+.h2 {
+  font-weight: 800;
+  font-size: clamp(44px, 6.4vw, 96px);
+  line-height: .9;
+  letter-spacing: -0.05em;
+}
+.intro {
+  font-size: clamp(20px, 1.7vw, 26px);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  max-width: 26em;
+}
+.muted { color: var(--ink-2); }
+
+/* ---------- Stock ---------- */
+.stock-bar {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 18px var(--pad);
+  border-top: 1px solid var(--rule);
+}
+.filters { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; border: 0; }
+.filters legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.chip {
+  min-height: 44px; padding: 0 16px;
+  background: transparent; border: 1px solid var(--rule); border-radius: 0;
+  font-size: 16px; letter-spacing: -0.01em; cursor: pointer;
+  touch-action: manipulation;
+  transition: transform 140ms var(--ease-out);
+}
+.chip:active { transform: scale(0.97); }
+.chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+@media (hover: hover) and (pointer: fine) { .chip[aria-pressed="false"]:hover { border-color: var(--ink); } }
+.count { font-size: 16px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+
+.stock { list-style: none; margin: 0; padding: 0; }
+.car {
+  display: grid;
+  grid-template-columns: minmax(0, 2.4fr) .7fr 1.1fr .9fr 1.1fr 6.5rem;
+  align-items: center; column-gap: 24px;
+  padding: 20px var(--pad);
+  border-top: 1px solid var(--rule);
+  font-variant-numeric: tabular-nums;
+}
+.car:last-child { border-bottom: 1px solid var(--rule); }
+.car-name { font-size: clamp(20px, 1.6vw, 24px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.15; }
+.car-name span { display: block; font-size: 15px; font-weight: 400; color: var(--ink-2); letter-spacing: -0.005em; margin-top: 3px; }
+.car dl { display: contents; }
+.car dt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.car dd { margin: 0; font-size: 17px; }
+.car .price { font-weight: 600; font-size: 20px; letter-spacing: -0.02em; text-align: right; }
+.car-cta {
+  justify-self: end;
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px;
+  padding: 0 0 0 8px; background: none; border: 0; cursor: pointer;
+  font-size: 16px; font-weight: 600; white-space: nowrap; text-decoration: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .car { transition: background-color 160ms var(--ease-out); }
+  .car:hover { background: var(--surface); }
+  .car-cta:hover { color: var(--accent-press); }
+}
+.stock-head {
+  display: grid;
+  grid-template-columns: minmax(0, 2.4fr) .7fr 1.1fr .9fr 1.1fr 6.5rem;
+  column-gap: 24px; padding: 12px var(--pad) 10px;
+  border-top: 1px solid var(--rule);
+  font-size: 14px; color: var(--ink-2);
+}
+.stock-head span:nth-child(5) { text-align: right; }
+.empty { padding: 40px var(--pad); border-top: 1px solid var(--rule); font-size: 19px; }
+.empty button { background: none; border: 0; padding: 0; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; min-height: 44px; }
+
+/* ---------- Concession ---------- */
+.promises { display: grid; gap: 0; margin-top: clamp(28px, 3vw, 40px); }
+.promise {
+  display: grid; grid-template-columns: 9.5em 1fr; gap: 20px;
+  padding: 18px 0; border-top: 1px solid var(--rule);
+}
+.promise:last-child { border-bottom: 1px solid var(--rule); }
+.promise h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.3; }
+.promise p { color: var(--ink-2); max-width: 34em; }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 32px; margin-top: clamp(36px, 4vw, 56px); }
+.facts h3 { font-size: 14px; font-weight: 500; color: var(--ink-2); margin-bottom: 6px; }
+.facts p, .facts address { font-style: normal; font-size: 18px; line-height: 1.45; letter-spacing: -0.01em; }
+.facts a { text-decoration: none; }
+@media (hover: hover) and (pointer: fine) { .facts a:hover { text-decoration: underline; text-underline-offset: 4px; } }
+
+/* ---------- Essai ---------- */
+.form { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px; max-width: 640px; }
+.field { display: grid; gap: 6px; min-width: 0; }
+.field.full { grid-column: 1 / -1; }
+.field label { font-size: 15px; font-weight: 500; }
+.field input, .field select {
+  width: 100%; min-height: 52px; padding: 0 14px;
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 0;
+  font-size: 17px;
+  appearance: none; -webkit-appearance: none;
+}
+.field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%230B0B0C' stroke-width='1.6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px;
+}
+.field input:focus-visible, .field select:focus-visible { outline: 2px solid var(--ink); outline-offset: 0; border-color: var(--ink); }
+.field [aria-invalid="true"] { border-color: var(--error); box-shadow: inset 0 0 0 1px var(--error); }
+.field .err { font-size: 14px; color: var(--error); min-height: 0; }
+.field .err:empty { display: none; }
+.form-foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; margin-top: 6px; }
+.form-foot p { font-size: 15px; color: var(--ink-2); max-width: 30em; }
+.btn[aria-busy="true"] { pointer-events: none; }
+.spinner { width: 16px; height: 16px; border: 2px solid rgb(255 255 255 / .4); border-top-color: #fff; border-radius: 50%; animation: spin 700ms linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.done { max-width: 34em; font-size: clamp(22px, 2vw, 28px); line-height: 1.25; letter-spacing: -0.02em; }
+.done p + p { margin-top: 12px; font-size: 17px; letter-spacing: 0; color: var(--ink-2); }
+.done button { margin-top: 20px; background: none; border: 0; padding: 0; min-height: 44px; font-size: 17px; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+
+/* ---------- Footer ---------- */
+.footer { margin: 0 var(--gutter); border-top: 1px solid var(--rule); }
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 24px;
+  padding: clamp(32px, 4vw, 56px) var(--pad) 28px;
+  font-size: 16px;
+}
+.footer-grid h2 { font-size: 14px; font-weight: 500; color: var(--ink-2); margin-bottom: 8px; }
+.footer-grid ul { list-style: none; margin: 0; padding: 0; }
+.footer-grid li a { display: inline-flex; min-height: 32px; align-items: center; text-decoration: none; }
+@media (hover: hover) and (pointer: fine) { .footer-grid li a:hover { text-decoration: underline; text-underline-offset: 4px; } }
+.footer-brand { font-size: 20px; letter-spacing: -0.02em; line-height: 1.3; max-width: 16em; }
+.legal {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
+  padding: 18px var(--pad) calc(24px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--rule);
+  font-size: 14px; color: var(--ink-2);
+}
+.legal a { color: inherit; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1080px) {
+  .car, .stock-head { grid-template-columns: minmax(0, 2fr) .7fr 1.1fr 1fr 6.5rem; }
+  .car dd.gearbox, .stock-head .gearbox { display: none; }
+}
+@media (max-width: 820px) {
+  :root { --pad: 20px; }
+  .header { grid-template-columns: auto 1fr; padding: 0 var(--gutter); }
+  .nav { display: none; }
+  .split { grid-template-columns: 1fr; }
+  .split > * + * { border-left: 0; border-top: 1px solid var(--rule); }
+  .hero-media { aspect-ratio: 2 / 1; }
+  .hero-media img { object-position: 46% 50%; }
+  .hero-split > :first-child { padding-bottom: 32px; }
+  .hero-split > :last-child { padding-bottom: 48px; }
+  .stock-head { display: none; }
+  .car {
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "name price" "meta meta" "cta cta";
+    row-gap: 6px; padding: 18px var(--pad);
+  }
+  .car-name { grid-area: name; }
+  .car .price { grid-area: price; align-self: start; }
+  .car .meta { grid-area: meta; display: flex; flex-wrap: wrap; gap: 4px 14px; color: var(--ink-2); font-size: 15px; }
+  .car .meta dd { font-size: 15px; }
+  .car .meta dd.gearbox { display: block; }
+  .car-cta { grid-area: cta; justify-self: start; padding-left: 0; }
+  .promise { grid-template-columns: 1fr; gap: 4px; }
+  .form { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid > :first-child { grid-column: 1 / -1; }
+}
+@media (min-width: 821px) { .car .meta { display: contents; } }
+@media (max-width: 420px) {
+  .header-cta { font-size: 16px; }
+  .facts { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="arrow" viewBox="0 0 12 12"><path d="M2.5 9.5l7-7M3.75 2.5H9.5v5.75" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></symbol>
+</svg>
+
+<header class="header">
+  <a class="logo" href="#top" aria-label="Courbe Automobiles, accueil">
+    <svg viewBox="0 0 46 34" aria-hidden="true">
+      <path d="M21.2 9.6A9.6 9.6 0 1 0 21.2 22.4" fill="none" stroke="#0B0B0C" stroke-width="5.4"/>
+      <path d="M38.2 15.6A9.6 9.6 0 1 0 38.2 28.4" fill="none" stroke="#0B0B0C" stroke-width="5.4"/>
+    </svg>
+  </a>
+  <nav class="nav" aria-label="Navigation principale">
+    <a href="#vehicules">Véhicules</a>
+    <a href="#concession">La concession</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a class="header-cta" href="#essai">Réserver un essai <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
+</header>
+
+<main id="contenu">
+  <!-- Hero -->
+  <section id="top" aria-labelledby="titre">
+    <div class="hero-media">
+      <img src="assets/hero-break-rouge.webp" width="1364" height="470" alt="Break sportif rouge vu de profil dans un studio gris" fetchpriority="high">
+    </div>
+    <div class="split hero-split">
+      <div>
+        <h1 id="titre" class="wordmark">Courbe <small>Automobiles</small></h1>
+      </div>
+      <div>
+        <p class="lead">Une sélection de voitures à conduire.</p>
+        <a class="btn" href="#vehicules">Voir les véhicules <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Véhicules -->
+  <section id="vehicules" class="section" aria-labelledby="t-vehicules">
+    <div class="split section-head" style="margin:0">
+      <div><h2 id="t-vehicules" class="h2">En stock</h2></div>
+      <div>
+        <p class="intro">Peu de voitures, choisies une par une. Toutes sont visibles à la concession et disponibles à l’essai, sur rendez-vous.</p>
+      </div>
+    </div>
+
+    <div class="stock-bar">
+      <fieldset class="filters">
+        <legend>Filtrer par carrosserie</legend>
+        <button class="chip" type="button" data-filter="all" aria-pressed="true">Tous</button>
+        <button class="chip" type="button" data-filter="Break" aria-pressed="false">Break</button>
+        <button class="chip" type="button" data-filter="Berline" aria-pressed="false">Berline</button>
+        <button class="chip" type="button" data-filter="Coupé" aria-pressed="false">Coupé</button>
+        <button class="chip" type="button" data-filter="SUV" aria-pressed="false">SUV</button>
+      </fieldset>
+      <p class="count" id="count" aria-live="polite"></p>
+    </div>
+
+    <div class="stock-head" aria-hidden="true">
+      <span>Modèle</span><span>Année</span><span>Kilométrage</span><span class="gearbox">Boîte</span><span>Prix</span><span></span>
+    </div>
+    <ul class="stock" id="stock"></ul>
+    <div class="empty" id="empty" hidden>
+      <p>Aucun véhicule de ce type en ce moment. <button type="button" id="reset">Voir tout le stock</button> ou <a href="#essai">dites-nous ce que vous cherchez</a>.</p>
+    </div>
+  </section>
+
+  <!-- Concession -->
+  <section id="concession" class="section" aria-labelledby="t-concession">
+    <div class="split" style="margin:0">
+      <div>
+        <h2 id="t-concession" class="h2">Avant la vitrine, l’atelier.</h2>
+      </div>
+      <div>
+        <p class="intro">Une voiture n’entre dans notre sélection qu’après un essai sur route et un passage complet à l’atelier. Si elle ne nous donne pas envie de la conduire, elle repart.</p>
+        <div class="promises">
+          <div class="promise">
+            <h3>Révisée</h3>
+            <p>Contrôle en 120 points, vidange, freins et pneus remis à niveau avant la mise en vente. Le rapport vous est remis.</p>
+          </div>
+          <div class="promise">
+            <h3>Garantie 12 mois</h3>
+            <p>Pièces et main-d’œuvre, prolongeable jusqu’à 36 mois. Valable dans tout le réseau partenaire.</p>
+          </div>
+          <div class="promise">
+            <h3>Reprise</h3>
+            <p>Votre voiture actuelle estimée sur place en 30 minutes, déduite directement du prix.</p>
+          </div>
+        </div>
+        <div class="facts" id="contact">
+          <div>
+            <h3>Adresse</h3>
+            <address>14 rue Marcel-Mérieux<br>69007 Lyon</address>
+          </div>
+          <div>
+            <h3>Horaires</h3>
+            <p>Mardi – samedi<br>9 h – 19 h</p>
+          </div>
+          <div>
+            <h3>Téléphone</h3>
+            <p><a href="tel:+33478000000">04 78 00 00 00</a></p>
+          </div>
+          <div>
+            <h3>E-mail</h3>
+            <p><a href="mailto:bonjour@courbe-automobiles.fr">bonjour@courbe-automobiles.fr</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Essai -->
+  <section id="essai" class="section" aria-labelledby="t-essai">
+    <div class="split" style="margin:0">
+      <div>
+        <h2 id="t-essai" class="h2">Réserver un essai</h2>
+      </div>
+      <div id="essai-zone">
+        <p class="intro" style="margin-bottom:28px">Choisissez une voiture et un jour. On vous rappelle dans la journée pour fixer l’heure.</p>
+        <form class="form" id="form" novalidate>
+          <div class="field">
+            <label for="nom">Nom</label>
+            <input id="nom" name="nom" type="text" autocomplete="name" required aria-describedby="nom-err">
+            <p class="err" id="nom-err"></p>
+          </div>
+          <div class="field">
+            <label for="tel">Téléphone</label>
+            <input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="tel-err">
+            <p class="err" id="tel-err"></p>
+          </div>
+          <div class="field full">
+            <label for="vehicule">Véhicule</label>
+            <select id="vehicule" name="vehicule" required aria-describedby="vehicule-err">
+              <option value="">Choisir un véhicule</option>
+            </select>
+            <p class="err" id="vehicule-err"></p>
+          </div>
+          <div class="field full">
+            <label for="date">Jour souhaité</label>
+            <input id="date" name="date" type="date" required aria-describedby="date-err">
+            <p class="err" id="date-err"></p>
+          </div>
+          <div class="form-foot">
+            <button class="btn" type="submit" id="submit">Réserver un essai <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></button>
+            <p>Permis de plus de 3 ans demandé le jour de l’essai.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <p class="footer-brand">Courbe Automobiles, véhicules d’occasion sélectionnés à Lyon 7<sup>e</sup>.</p>
+    <div>
+      <h2>Le site</h2>
+      <ul>
+        <li><a href="#vehicules">Véhicules</a></li>
+        <li><a href="#concession">La concession</a></li>
+        <li><a href="#essai">Réserver un essai</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Nous joindre</h2>
+      <ul>
+        <li><a href="tel:+33478000000">04 78 00 00 00</a></li>
+        <li><a href="mailto:bonjour@courbe-automobiles.fr">E-mail</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Suivre</h2>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="legal">
+    <p>© <span id="year">2026</span> Courbe Automobiles</p>
+    <p><a href="#">Mentions légales</a> · <a href="#">Confidentialité</a></p>
+  </div>
+</footer>
+
+<script>
+const STOCK = [
+  { id: "pan-st", name: "Porsche Panamera 4 Sport Turismo", version: "E-Hybrid, 462 ch", type: "Break", year: 2021, km: 38500, gearbox: "Automatique", price: 89900 },
+  { id: "rs4", name: "Audi RS 4 Avant", version: "2.9 TFSI V6, 450 ch", type: "Break", year: 2019, km: 61200, gearbox: "Automatique", price: 54900 },
+  { id: "v90", name: "Volvo V90 Recharge", version: "T6 AWD Inscription", type: "Break", year: 2022, km: 44000, gearbox: "Automatique", price: 46500 },
+  { id: "a110", name: "Alpine A110 Légende", version: "1.8 T, 252 ch", type: "Coupé", year: 2019, km: 22000, gearbox: "Automatique", price: 52900 },
+  { id: "m2", name: "BMW M2 Compétition", version: "3.0, 410 ch", type: "Coupé", year: 2020, km: 27800, gearbox: "Manuelle", price: 58500 },
+  { id: "508", name: "Peugeot 508 PSE", version: "Hybrid4, 360 ch", type: "Berline", year: 2022, km: 19600, gearbox: "Automatique", price: 44900 },
+  { id: "e300", name: "Mercedes Classe E 300 e", version: "AMG Line", type: "Berline", year: 2021, km: 48900, gearbox: "Automatique", price: 39900 },
+  { id: "macan", name: "Porsche Macan S", version: "2.9 V6, 380 ch", type: "SUV", year: 2020, km: 55300, gearbox: "Automatique", price: 57900 },
+];
+
+const nf = new Intl.NumberFormat("fr-FR");
+const eur = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+const list = document.getElementById("stock");
+const count = document.getElementById("count");
+const empty = document.getElementById("empty");
+const select = document.getElementById("vehicule");
+const arrow = '<svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg>';
+
+function render(filter) {
+  const items = STOCK.filter(c => filter === "all" || c.type === filter);
+  list.innerHTML = items.map(c => `
+    <li class="car">
+      <h3 class="car-name">${c.name}<span>${c.version} · ${c.type}</span></h3>
+      <dl class="meta">
+        <dt>Année</dt><dd>${c.year}</dd>
+        <dt>Kilométrage</dt><dd>${nf.format(c.km)} km</dd>
+        <dt>Boîte</dt><dd class="gearbox">${c.gearbox}</dd>
+      </dl>
+      <p class="price"><span class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)">Prix : </span>${eur.format(c.price)}</p>
+      <a class="car-cta" href="#essai" data-car="${c.id}" aria-label="Réserver un essai : ${c.name}">Essayer ${arrow}</a>
+    </li>`).join("");
+  const n = items.length;
+  count.textContent = n ? `${n} véhicule${n > 1 ? "s" : ""} disponible${n > 1 ? "s" : ""}` : "";
+  empty.hidden = n !== 0;
+}
+
+document.querySelectorAll(".chip").forEach(chip => {
+  chip.addEventListener("click", () => {
+    document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", String(c === chip)));
+    render(chip.dataset.filter);
+  });
+});
+document.getElementById("reset").addEventListener("click", () => document.querySelector('.chip[data-filter="all"]').click());
+
+select.insertAdjacentHTML("beforeend", STOCK.map(c => `<option value="${c.id}">${c.name} — ${eur.format(c.price)}</option>`).join("")
+  + '<option value="autre">Autre / je ne sais pas encore</option>');
+
+list.addEventListener("click", e => {
+  const a = e.target.closest("[data-car]");
+  if (!a) return;
+  select.value = a.dataset.car;
+  setError(select, "");
+});
+
+/* Date : pas avant demain, ni le dimanche/lundi (fermé) */
+const dateInput = document.getElementById("date");
+const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+dateInput.min = tomorrow.toISOString().slice(0, 10);
+
+const form = document.getElementById("form");
+function setError(el, msg) {
+  el.setAttribute("aria-invalid", msg ? "true" : "false");
+  document.getElementById(el.id + "-err").textContent = msg;
+}
+function validate() {
+  const errors = [];
+  const nom = form.nom, tel = form.tel;
+  const checks = [
+    [nom, nom.value.trim().length < 2 ? "Indiquez votre nom pour qu’on sache qui accueillir." : ""],
+    [tel, tel.value.replace(/[\s.\-]/g, "").match(/^(\+33|0)\d{9}$/) ? "" : "Numéro à 10 chiffres, par exemple 06 12 34 56 78."],
+    [select, select.value ? "" : "Choisissez une voiture, ou « Autre » si vous hésitez."],
+    [dateInput, (() => {
+      if (!dateInput.value) return "Choisissez un jour.";
+      if (dateInput.value < dateInput.min) return "Choisissez un jour à partir de demain.";
+      const d = new Date(dateInput.value + "T12:00").getDay();
+      return d === 0 || d === 1 ? "La concession est fermée le dimanche et le lundi. Choisissez un jour du mardi au samedi." : "";
+    })()],
+  ];
+  checks.forEach(([el, msg]) => { setError(el, msg); if (msg) errors.push(el); });
+  return errors;
+}
+form.addEventListener("input", e => { if (e.target.getAttribute("aria-invalid") === "true") validate(); });
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  const errors = validate();
+  if (errors.length) { errors[0].focus(); return; }
+  const btn = document.getElementById("submit");
+  btn.setAttribute("aria-busy", "true");
+  btn.insertAdjacentHTML("afterbegin", '<span class="spinner" aria-hidden="true"></span>');
+  btn.querySelector(".arrow").remove();
+  // Démo : à brancher sur le vrai service d’envoi
+  setTimeout(() => {
+    const car = STOCK.find(c => c.id === select.value);
+    const jour = new Intl.DateTimeFormat("fr-FR", { weekday: "long", day: "numeric", month: "long" }).format(new Date(dateInput.value + "T12:00"));
+    const zone = document.getElementById("essai-zone");
+    zone.innerHTML = `<div class="done" tabindex="-1" id="done">
+      <p>Essai demandé pour le ${jour}${car ? `, au volant de la ${car.name}` : ""}.</p>
+      <p>On vous appelle au ${form.tel.value.trim()} dans la journée pour fixer l’heure.</p>
+      <button type="button" onclick="location.reload()">Réserver un autre essai</button>
+    </div>`;
+    document.getElementById("done").focus();
+  }, 900);
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+render("all");
+</script>
+</body>
+</html>
