@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Courbe Automobiles — Véhicules d’occasion sélectionnés à Lyon</title>
-<meta name="description" content="Courbe Automobiles, concession à Lyon : une sélection de voitures d’occasion révisées et garanties 12 mois. Consultez le stock et réservez un essai.">
-<meta name="theme-color" content="#EAE8EB">
+<title>Courbe Automobiles — Voitures d’occasion sélectionnées à Lyon</title>
+<meta name="description" content="Courbe Automobiles, concession à Lyon 7e : voitures d’occasion contrôlées en 120 points et garanties 12 mois. Stock, prochains arrivages et essai sur rendez-vous.">
+<meta name="theme-color" content="#E6E4E7">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;800&display=swap">
@@ -13,312 +13,375 @@
 <style>
 :root {
   color-scheme: light;
-  --bg: #EAE8EB;          /* gris studio du hero */
-  --surface: #F3F2F4;     /* champs, survols */
-  --ink: #0B0B0C;         /* noir du logotype */
-  --ink-2: #4A484D;       /* texte secondaire (7,9:1 sur --bg) */
-  --rule: #C9C6CC;        /* filets, teintés vers le fond */
-  --accent: #EC4603;      /* orange du bouton « Voir les véhicules » */
+  --bg: #E6E4E7;          /* gris studio */
+  --paper: #FBFBFC;       /* section technique */
+  --surface: #F1F0F2;     /* champs */
+  --ink: #0B0B0C;
+  --ink-2: #4A484D;       /* 7,6:1 sur --bg */
+  --rule: #C6C3C9;
+  --rule-dot: #A9A5AD;
+  --accent: #EC4603;
   --accent-press: #C93B02;
+  --violet: #6B3FEA;      /* repère actif du schéma */
   --error: #B42309;
+  --card-grey: #C2C0BE;
+  --card-sage: #ABB3A0;
+  --card-sand: #E5CCB6;
 
   --gutter: 16px;
-  --pad: clamp(20px, 2.6vw, 36px);
+  --pad: clamp(20px, 2.4vw, 32px);
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --font: "Hanken Grotesk", "Helvetica Neue", Helvetica, sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 80px; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 76px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--font);
-  font-size: 17px;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--font); font-size: 16px; line-height: 1.5;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
 }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
-button, input, select, textarea { font: inherit; color: inherit; }
-h1, h2, h3, p { margin: 0; }
-h1, h2, h3 { text-wrap: balance; }
-:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 1px; }
-
-.skip {
-  position: absolute; left: var(--gutter); top: -60px; z-index: 20;
-  background: var(--ink); color: var(--bg); padding: 10px 14px; text-decoration: none;
-}
+button, input, select { font: inherit; color: inherit; }
+h1, h2, h3, p, figure { margin: 0; }
+h1, h2, h3 { text-wrap: balance; font-weight: 400; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip { position: absolute; left: var(--gutter); top: -60px; z-index: 30; background: var(--ink); color: var(--bg); padding: 10px 14px; text-decoration: none; }
 .skip:focus { top: 12px; }
+.ic { width: .78em; height: .78em; flex: none; }
 
-/* ---------- Arrow icon (même trait partout) ---------- */
-.arrow { width: .72em; height: .72em; flex: none; }
+/* ---------- Titres ---------- */
+.display { font-size: clamp(30px, 3.2vw, 46px); line-height: 1.04; letter-spacing: -0.035em; }
+.small { font-size: 14px; line-height: 1.45; color: var(--ink-2); }
+.small strong { color: var(--accent-press); font-weight: 500; }
 
-/* ---------- Header ---------- */
-.header {
-  position: sticky; top: 0; z-index: 10;
-  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
-  height: 64px; padding: 0 calc(var(--gutter) + 14px);
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: saturate(1.2) blur(10px);
-  -webkit-backdrop-filter: saturate(1.2) blur(10px);
-}
-.logo { display: inline-flex; width: 46px; height: 44px; align-items: center; text-decoration: none; }
-.logo svg { width: 46px; height: auto; }
-.nav { display: flex; gap: clamp(20px, 3.4vw, 46px); }
-.nav a, .header-cta {
-  text-decoration: none; font-size: 17px; letter-spacing: -0.01em;
-  display: inline-flex; align-items: center; gap: 8px; min-height: 44px;
-}
-.nav a { color: var(--ink); }
-.header-cta { justify-self: end; font-weight: 600; }
-@media (hover: hover) and (pointer: fine) {
-  .nav a:hover, .header-cta:hover { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; }
-}
-
-/* ---------- Hero ---------- */
-.hero-media {
-  margin: 0 var(--gutter);
-  aspect-ratio: 1364 / 470;
-  overflow: hidden;
-  background: #AEB6B8;
-}
-.hero-media img { width: 100%; height: 100%; object-fit: cover; }
-.split {
-  display: grid; grid-template-columns: 1fr 1fr;
-  margin: 0 var(--gutter);
-}
-.split > * { padding: var(--pad); min-width: 0; }
-.split > * + * { border-left: 1px solid var(--rule); }
-
-.hero-split > :first-child { padding-top: clamp(28px, 3vw, 44px); padding-bottom: clamp(48px, 6vw, 80px); }
-.wordmark {
-  font-weight: 800;
-  font-size: clamp(64px, 11.2vw, 168px);
-  line-height: .86;
-  letter-spacing: -0.055em;
-  margin-left: -0.04em;
-}
-.wordmark small {
-  display: block;
-  font-weight: 400;
-  font-size: clamp(24px, 3vw, 44px);
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  margin-top: .45em;
-  margin-left: .06em;
-}
-.hero-split > :last-child { padding-top: clamp(36px, 3.6vw, 52px); }
-.lead {
-  font-weight: 400;
-  font-size: clamp(32px, 4.6vw, 66px);
-  line-height: 1.04;
-  letter-spacing: -0.035em;
-  max-width: 11.5em;
-}
-
+/* ---------- Boutons ---------- */
 .btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  min-height: 50px; padding: 0 22px;
-  border: 0; border-radius: 0;
-  background: var(--accent); color: #fff;
-  font-size: 19px; font-weight: 500; letter-spacing: -0.015em;
-  text-decoration: none; cursor: pointer;
-  touch-action: manipulation;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 44px; padding: 0 16px; border: 0; border-radius: 0;
+  background: var(--accent); color: #fff; font-size: 16px; font-weight: 500; letter-spacing: -0.01em;
+  text-decoration: none; cursor: pointer; touch-action: manipulation; white-space: nowrap;
   transition: transform 160ms var(--ease-out), background-color 160ms var(--ease-out);
 }
 .btn:active { transform: scale(0.97); background: var(--accent-press); }
-@media (hover: hover) and (pointer: fine) { .btn:hover { background: var(--accent-press); } }
-.btn:focus-visible { outline-color: var(--ink); }
-.hero-split .btn { margin-top: clamp(28px, 3.4vw, 48px); }
+.btn.white { background: #fff; color: var(--accent-press); }
+.btn.white:active { background: #F3EDEA; }
+.link {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0;
+  background: none; border: 0; cursor: pointer; text-decoration: none;
+  font-size: 16px; font-weight: 600; letter-spacing: -0.01em; white-space: nowrap; touch-action: manipulation;
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover { background: var(--accent-press); }
+  .btn.white:hover { background: #F3EDEA; }
+  .link:hover { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; }
+}
 
-/* Seul moment orchestré : l’arrivée du hero */
+/* ---------- Cases image (remplacées par les visuels fournis) ---------- */
+.ph { position: relative; overflow: hidden; background: #CFCDD1; }
+.ph::before {
+  content: attr(data-label); position: absolute; inset: 0;
+  display: grid; place-items: center; padding: 12px; text-align: center;
+  font-size: 13px; color: var(--ink-2);
+  background: repeating-linear-gradient(135deg, transparent 0 14px, rgb(0 0 0 / .035) 14px 15px);
+}
+.ph img { position: relative; width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- Header ---------- */
+.header {
+  position: sticky; top: 0; z-index: 20;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  height: 60px; padding: 0 calc(var(--gutter) + 10px);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+.logo { display: inline-flex; align-items: center; height: 44px; width: 44px; }
+.logo svg { width: 38px; }
+.nav { display: flex; gap: clamp(14px, 2vw, 28px); }
+.nav a { font-size: 15px; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; color: var(--ink-2); }
+.nav a[aria-current="page"] { color: var(--ink); }
+.header .link { justify-self: end; font-size: 15px; }
+@media (hover: hover) and (pointer: fine) { .nav a:hover { color: var(--ink); } }
+
+/* ---------- Hero ---------- */
+.board { margin: 0 var(--gutter); }
+.hero-media { aspect-ratio: 1364 / 470; overflow: hidden; background: #AEB6B8; }
+.hero-media img { width: 100%; height: 100%; object-fit: cover; }
+.split { display: grid; grid-template-columns: 1fr 1fr; }
+.split > * { min-width: 0; padding: var(--pad); }
+.split > * + * { border-left: 1px solid var(--rule); }
+.hero-split > :first-child { display: flex; flex-direction: column; justify-content: space-between; gap: 40px; padding-top: clamp(28px, 3vw, 44px); }
+.wordmark { font-weight: 800; font-size: clamp(64px, 9.6vw, 148px); line-height: .86; letter-spacing: -0.06em; margin-left: -0.04em; }
+.hero-split .small { max-width: 34em; }
+.hero-split > :last-child { padding-top: clamp(30px, 3.2vw, 46px); padding-bottom: clamp(48px, 6vw, 88px); }
+.lead { font-size: clamp(24px, 2.5vw, 36px); line-height: 1.12; letter-spacing: -0.03em; max-width: 17em; }
+.ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; margin-top: clamp(28px, 3.4vw, 48px); }
+
 @media (prefers-reduced-motion: no-preference) {
   .hero-media img { animation: settle 1100ms var(--ease-out) both; }
-  .wordmark, .lead, .hero-split .btn { animation: rise 700ms var(--ease-out) both; }
-  .lead { animation-delay: 90ms; }
-  .hero-split .btn { animation-delay: 160ms; }
+  .wordmark, .lead, .hero-split .ctas { animation: rise 700ms var(--ease-out) both; }
+  .lead { animation-delay: 80ms; } .hero-split .ctas { animation-delay: 150ms; }
   @keyframes settle { from { transform: scale(1.04); opacity: 0; } to { transform: none; opacity: 1; } }
   @keyframes rise { from { transform: translateY(14px); opacity: 0; } to { transform: none; opacity: 1; } }
 }
 
-/* ---------- Sections ---------- */
-.section { border-top: 1px solid var(--rule); margin: 0 var(--gutter); }
-.section-head > :first-child { padding-bottom: clamp(24px, 3vw, 40px); }
-.h2 {
-  font-weight: 800;
-  font-size: clamp(44px, 6.4vw, 96px);
-  line-height: .9;
-  letter-spacing: -0.05em;
+/* ---------- Atouts autour de la voiture ---------- */
+.proofs {
+  position: relative; display: grid;
+  grid-template-columns: 1fr minmax(0, 1.9fr) 1fr; grid-template-rows: 1fr 1fr;
+  border-top: 1px solid var(--rule);
+  padding: clamp(28px, 3vw, 44px) 0 clamp(48px, 6vw, 88px);
 }
-.intro {
-  font-size: clamp(20px, 1.7vw, 26px);
-  line-height: 1.3;
-  letter-spacing: -0.02em;
-  max-width: 26em;
-}
-.muted { color: var(--ink-2); }
+.proofs::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid var(--rule); }
+.proofs .ph { grid-column: 2; grid-row: 1 / 3; aspect-ratio: 16 / 9; z-index: 1; }
+.proof { position: relative; display: flex; align-items: center; gap: 12px; padding: 0 0 0 var(--pad); align-self: center; }
+.proof:nth-of-type(1) { grid-column: 1; grid-row: 1; }
+.proof:nth-of-type(2) { grid-column: 1; grid-row: 2; }
+.proof:nth-of-type(3) { grid-column: 3; grid-row: 1; flex-direction: row-reverse; padding: 0 var(--pad) 0 0; }
+.proof:nth-of-type(4) { grid-column: 3; grid-row: 2; flex-direction: row-reverse; padding: 0 var(--pad) 0 0; }
+.proof-text { flex: none; width: min(13em, 70%); text-align: center; font-size: 16px; line-height: 1.3; letter-spacing: -0.01em; color: var(--ink); }
+.proof-text svg { display: block; width: 26px; height: 20px; margin: 0 auto 10px; color: #9E9AA2; }
+.proof-line { flex: 1; height: 0; border-top: 1px dashed var(--rule-dot); position: relative; margin-top: 30px; }
+.proof-line::before { content: ""; position: absolute; top: -4px; width: 7px; height: 7px; border: 1px solid var(--rule-dot); border-radius: 50%; background: var(--bg); }
+.proof:nth-of-type(1) .proof-line::before, .proof:nth-of-type(2) .proof-line::before { left: -4px; }
+.proof:nth-of-type(3) .proof-line::before, .proof:nth-of-type(4) .proof-line::before { right: -4px; }
 
-/* ---------- Stock ---------- */
-.stock-bar {
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
-  padding: 18px var(--pad);
+/* ---------- Contrôle 120 points ---------- */
+.paper { background: var(--paper); }
+.check { padding: clamp(48px, 6vw, 80px) 0 clamp(40px, 5vw, 72px); }
+.check-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px; padding: 0 var(--pad); }
+.check-head .display { max-width: 14em; }
+.check-head .small { max-width: 26em; }
+.schema { position: relative; margin: clamp(28px, 3vw, 44px) var(--pad) 0; }
+.schema .ph { aspect-ratio: 2 / 1; background: #F0EFF1; }
+.schema .ph img { object-fit: contain; }
+.callout {
+  position: absolute; width: min(220px, 24%);
+  display: grid; gap: 6px; text-align: left; padding: 14px 16px;
+  background: #F1F0F2; border: 1px solid #DCDADF; border-radius: 0; cursor: pointer;
+  touch-action: manipulation;
+  transition: background-color 180ms var(--ease-out), color 180ms var(--ease-out), border-color 180ms var(--ease-out);
+}
+.callout svg { width: 16px; height: 16px; }
+.callout b { font-weight: 500; font-size: 17px; letter-spacing: -0.02em; line-height: 1.2; }
+.callout span { font-size: 14px; line-height: 1.4; color: var(--ink-2); }
+.callout[aria-pressed="true"] { background: var(--violet); border-color: var(--violet); color: #fff; }
+.callout[aria-pressed="true"] span { color: rgb(255 255 255 / .86); }
+.callout::after { /* fil de repère vers la pièce */
+  content: ""; position: absolute; border: 1px dashed #B9B5BE; pointer-events: none;
+}
+.c1 { left: 52%; top: -6%; }   .c1::after { left: -60px; top: 50%; width: 60px; height: 70px; border-right: 0; border-bottom: 0; }
+.c2 { left: 0; bottom: 4%; }   .c2::after { left: 30%; bottom: 100%; width: 0; height: 60px; border-left: 0; }
+.c3 { right: 0; top: 8%; }     .c3::after { right: 100%; top: 50%; width: 50px; height: 0; border-bottom: 0; }
+.c4 { right: 6%; bottom: -4%; } .c4::after { right: 100%; top: 50%; width: 70px; height: 0; border-bottom: 0; }
+@media (hover: hover) and (pointer: fine) { .callout[aria-pressed="false"]:hover { border-color: var(--violet); } }
+
+/* ---------- Grille « Prochains arrivages » ---------- */
+.grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 48px auto auto 48px;
   border-top: 1px solid var(--rule);
 }
-.filters { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; border: 0; }
-.filters legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-.chip {
-  min-height: 44px; padding: 0 16px;
-  background: transparent; border: 1px solid var(--rule); border-radius: 0;
-  font-size: 16px; letter-spacing: -0.01em; cursor: pointer;
-  touch-action: manipulation;
+.cell { position: relative; min-width: 0; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.cell:nth-child(3n) { border-right: 0; }
+.grid > .cell:nth-last-child(-n+3) { border-bottom: 0; }
+.cell::after { /* repère aux croisements */
+  content: ""; position: absolute; right: -4px; bottom: -4px; z-index: 2;
+  width: 7px; height: 7px; border: 1px solid var(--rule-dot); border-radius: 50%; background: var(--bg);
+}
+.cell:nth-child(3n)::after, .grid > .cell:nth-last-child(-n+3)::after { display: none; }
+.intro-cell { display: flex; flex-direction: column; justify-content: space-between; gap: 32px; padding: var(--pad); }
+.intro-cell .display { max-width: 12em; }
+.intro-cell .btn { align-self: flex-start; }
+.intro-cell .small { margin-top: 12px; max-width: 30em; }
+.tile { display: flex; flex-direction: column; justify-content: space-between; gap: 40px; min-height: 250px; padding: var(--pad) 20px 20px; }
+.tile svg { width: 26px; height: 26px; color: #9E9AA2; }
+.tile h3 { font-size: clamp(22px, 1.8vw, 27px); line-height: 1.1; letter-spacing: -0.03em; }
+.tile p { margin-top: 10px; font-size: 14px; line-height: 1.45; color: var(--ink-2); }
+.carousel-cell { padding: 0; }
+.carousel { position: relative; height: 100%; min-height: 300px; overflow: hidden; background: #3A3B3F; }
+.slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity 400ms var(--ease-out), visibility 0s 400ms; }
+.slide.is-on { opacity: 1; visibility: visible; transition: opacity 400ms var(--ease-out); }
+.slide .ph { height: 100%; background: #6E7076; }
+.slide .ph::before { color: #E6E4E7; }
+.slide figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 1;
+  display: flex; justify-content: space-between; align-items: end; gap: 16px;
+  padding: 40px 18px 16px; color: #fff; font-size: 14px; line-height: 1.35;
+  background: linear-gradient(to top, rgb(0 0 0 / .5), transparent);
+}
+.slide figcaption span { color: rgb(255 255 255 / .78); }
+.dots { position: absolute; right: 18px; bottom: 18px; z-index: 2; display: flex; gap: 6px; }
+.dots i { width: 5px; height: 5px; background: rgb(255 255 255 / .45); }
+.dots i.is-on { background: #fff; }
+.controls-cell { display: flex; align-items: flex-end; padding: 16px 20px; }
+.arrows { display: flex; }
+.arrows button {
+  display: grid; place-items: center; width: 44px; height: 44px; padding: 0;
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 0; cursor: pointer; touch-action: manipulation;
   transition: transform 140ms var(--ease-out);
 }
-.chip:active { transform: scale(0.97); }
-.chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
-@media (hover: hover) and (pointer: fine) { .chip[aria-pressed="false"]:hover { border-color: var(--ink); } }
-.count { font-size: 16px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.arrows button + button { border-left: 0; }
+.arrows button:active { transform: scale(0.95); }
+.arrows svg { width: 12px; height: 12px; }
+@media (hover: hover) and (pointer: fine) { .arrows button:hover { background: #fff; } }
 
-.stock { list-style: none; margin: 0; padding: 0; }
-.car {
-  display: grid;
-  grid-template-columns: minmax(0, 2.4fr) .7fr 1.1fr .9fr 1.1fr 6.5rem;
-  align-items: center; column-gap: 24px;
-  padding: 20px var(--pad);
-  border-top: 1px solid var(--rule);
-  font-variant-numeric: tabular-nums;
+/* ---------- Bandeau orange ---------- */
+.band { position: relative; display: grid; grid-template-columns: 1.15fr 1fr; background: var(--accent); color: #fff; overflow: hidden; }
+.band-text { display: flex; flex-direction: column; justify-content: space-between; gap: 40px; padding: clamp(40px, 4.4vw, 64px) var(--pad) var(--pad); }
+.band .display { max-width: 13em; }
+.band-form { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px 24px; }
+.band-form .field { flex: 1 1 260px; max-width: 360px; }
+.email-wrap { position: relative; }
+.email-wrap svg { position: absolute; right: 12px; top: 50%; width: 16px; height: 16px; transform: translateY(-50%); pointer-events: none; }
+.band input {
+  width: 100%; min-height: 44px; padding: 0 40px 0 12px; border-radius: 0;
+  background: transparent; border: 1px solid rgb(255 255 255 / .7); color: #fff; font-size: 16px;
 }
-.car:last-child { border-bottom: 1px solid var(--rule); }
-.car-name { font-size: clamp(20px, 1.6vw, 24px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.15; }
-.car-name span { display: block; font-size: 15px; font-weight: 400; color: var(--ink-2); letter-spacing: -0.005em; margin-top: 3px; }
-.car dl { display: contents; }
-.car dt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-.car dd { margin: 0; font-size: 17px; }
-.car .price { font-weight: 600; font-size: 20px; letter-spacing: -0.02em; text-align: right; }
-.car-cta {
-  justify-self: end;
-  display: inline-flex; align-items: center; gap: 8px; min-height: 44px;
-  padding: 0 0 0 8px; background: none; border: 0; cursor: pointer;
-  font-size: 16px; font-weight: 600; white-space: nowrap; text-decoration: none;
-}
-@media (hover: hover) and (pointer: fine) {
-  .car { transition: background-color 160ms var(--ease-out); }
-  .car:hover { background: var(--surface); }
-  .car-cta:hover { color: var(--accent-press); }
-}
-.stock-head {
-  display: grid;
-  grid-template-columns: minmax(0, 2.4fr) .7fr 1.1fr .9fr 1.1fr 6.5rem;
-  column-gap: 24px; padding: 12px var(--pad) 10px;
-  border-top: 1px solid var(--rule);
-  font-size: 14px; color: var(--ink-2);
-}
-.stock-head span:nth-child(5) { text-align: right; }
-.empty { padding: 40px var(--pad); border-top: 1px solid var(--rule); font-size: 19px; }
-.empty button { background: none; border: 0; padding: 0; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; min-height: 44px; }
+.band input::placeholder { color: rgb(255 255 255 / .82); }
+.band input:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.band input[aria-invalid="true"] { border-color: #fff; border-width: 2px; }
+.band .err { margin-top: 6px; font-size: 14px; color: #fff; font-weight: 500; }
+.band .err:empty { display: none; }
+.band .note { font-size: 14px; line-height: 1.45; max-width: 24em; color: rgb(255 255 255 / .92); align-self: center; }
+.band .ok { font-size: 18px; letter-spacing: -0.01em; }
+.band .ph { background: #D94003; height: 100%; min-height: 280px; }
+.band .ph::before { color: #FFE1D3; background: none; }
 
-/* ---------- Concession ---------- */
-.promises { display: grid; gap: 0; margin-top: clamp(28px, 3vw, 40px); }
-.promise {
-  display: grid; grid-template-columns: 9.5em 1fr; gap: 20px;
-  padding: 18px 0; border-top: 1px solid var(--rule);
-}
-.promise:last-child { border-bottom: 1px solid var(--rule); }
-.promise h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.3; }
-.promise p { color: var(--ink-2); max-width: 34em; }
-.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 32px; margin-top: clamp(36px, 4vw, 56px); }
-.facts h3 { font-size: 14px; font-weight: 500; color: var(--ink-2); margin-bottom: 6px; }
-.facts p, .facts address { font-style: normal; font-size: 18px; line-height: 1.45; letter-spacing: -0.01em; }
-.facts a { text-decoration: none; }
-@media (hover: hover) and (pointer: fine) { .facts a:hover { text-decoration: underline; text-underline-offset: 4px; } }
+/* ---------- Dernières arrivées ---------- */
+.latest { padding: clamp(48px, 6vw, 80px) var(--pad) clamp(40px, 5vw, 64px); }
+.latest-top { display: grid; grid-template-columns: 1fr 1fr; gap: var(--pad); }
+.latest-intro { display: flex; flex-direction: column; justify-content: space-between; gap: 32px; }
+.latest-intro .display { max-width: 12em; }
+.latest-intro .btn { align-self: flex-start; margin-top: 14px; }
+.card { min-width: 0; }
+.card .ph { aspect-ratio: 7 / 4; }
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--pad) 12px; margin-top: 20px; }
+.cards .ph { aspect-ratio: 8 / 7; }
+.latest-top .card .ph { background: #CBC9CC; }
+.cards .card:nth-child(1) .ph { background: var(--card-grey); }
+.cards .card:nth-child(2) .ph { background: var(--card-sage); }
+.cards .card:nth-child(3) .ph { background: var(--card-sand); }
+.card-cap { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 4px; font-size: 14px; }
+.card-cap p { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.card-cap span { color: var(--ink-2); margin-left: 6px; }
+.card-cap .link { font-size: 14px; }
 
-/* ---------- Essai ---------- */
-.form { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px; max-width: 640px; }
-.field { display: grid; gap: 6px; min-width: 0; }
-.field.full { grid-column: 1 / -1; }
-.field label { font-size: 15px; font-weight: 500; }
-.field input, .field select {
-  width: 100%; min-height: 52px; padding: 0 14px;
-  background: var(--surface); border: 1px solid var(--rule); border-radius: 0;
-  font-size: 17px;
-  appearance: none; -webkit-appearance: none;
+.all-stock { margin-top: 32px; border-top: 1px solid var(--rule); }
+.all-stock[hidden] { display: none; }
+.row {
+  display: grid; grid-template-columns: minmax(0, 2.4fr) .7fr 1.1fr 1.1fr 6rem; align-items: center; column-gap: 20px;
+  padding: 12px 0; border-bottom: 1px solid var(--rule); font-variant-numeric: tabular-nums;
 }
-.field select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%230B0B0C' stroke-width='1.6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px;
-}
-.field input:focus-visible, .field select:focus-visible { outline: 2px solid var(--ink); outline-offset: 0; border-color: var(--ink); }
-.field [aria-invalid="true"] { border-color: var(--error); box-shadow: inset 0 0 0 1px var(--error); }
-.field .err { font-size: 14px; color: var(--error); min-height: 0; }
-.field .err:empty { display: none; }
-.form-foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; margin-top: 6px; }
-.form-foot p { font-size: 15px; color: var(--ink-2); max-width: 30em; }
-.btn[aria-busy="true"] { pointer-events: none; }
-.spinner { width: 16px; height: 16px; border: 2px solid rgb(255 255 255 / .4); border-top-color: #fff; border-radius: 50%; animation: spin 700ms linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
-.done { max-width: 34em; font-size: clamp(22px, 2vw, 28px); line-height: 1.25; letter-spacing: -0.02em; }
-.done p + p { margin-top: 12px; font-size: 17px; letter-spacing: 0; color: var(--ink-2); }
-.done button { margin-top: 20px; background: none; border: 0; padding: 0; min-height: 44px; font-size: 17px; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+.row b { font-weight: 600; letter-spacing: -0.015em; }
+.row .price { text-align: right; font-weight: 600; }
+.row .link { justify-self: end; font-size: 14px; }
 
 /* ---------- Footer ---------- */
 .footer { margin: 0 var(--gutter); border-top: 1px solid var(--rule); }
-.footer-grid {
-  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 24px;
-  padding: clamp(32px, 4vw, 56px) var(--pad) 28px;
-  font-size: 16px;
-}
-.footer-grid h2 { font-size: 14px; font-weight: 500; color: var(--ink-2); margin-bottom: 8px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 24px; padding: clamp(32px, 4vw, 56px) var(--pad) 28px; font-size: 15px; }
+.footer-grid h2 { font-size: 13px; font-weight: 500; color: var(--ink-2); margin-bottom: 8px; }
 .footer-grid ul { list-style: none; margin: 0; padding: 0; }
-.footer-grid li a { display: inline-flex; min-height: 32px; align-items: center; text-decoration: none; }
-@media (hover: hover) and (pointer: fine) { .footer-grid li a:hover { text-decoration: underline; text-underline-offset: 4px; } }
+.footer-grid li a, .footer-grid li button { display: inline-flex; min-height: 32px; align-items: center; text-decoration: none; background: none; border: 0; padding: 0; cursor: pointer; font-size: 15px; }
+.footer-grid address { font-style: normal; }
 .footer-brand { font-size: 20px; letter-spacing: -0.02em; line-height: 1.3; max-width: 16em; }
-.legal {
-  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
-  padding: 18px var(--pad) calc(24px + env(safe-area-inset-bottom));
-  border-top: 1px solid var(--rule);
-  font-size: 14px; color: var(--ink-2);
+@media (hover: hover) and (pointer: fine) { .footer-grid li a:hover, .footer-grid li button:hover { text-decoration: underline; text-underline-offset: 4px; } }
+.legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding: 18px var(--pad) calc(24px + env(safe-area-inset-bottom)); border-top: 1px solid var(--rule); font-size: 13px; color: var(--ink-2); }
+
+/* ---------- Dialogues ---------- */
+dialog {
+  width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 0;
+  border: 1px solid var(--rule); border-radius: 0; background: var(--bg); color: var(--ink);
+  box-shadow: 0 2px 6px rgb(40 30 50 / .08), 0 24px 60px rgb(40 30 50 / .18);
 }
-.legal a { color: inherit; }
+dialog::backdrop { background: rgb(30 26 34 / .42); }
+@media (prefers-reduced-motion: no-preference) {
+  dialog[open] { animation: pop 240ms var(--ease-out); }
+  dialog[open]::backdrop { animation: fade 240ms var(--ease-out); }
+  @keyframes pop { from { opacity: 0; transform: scale(0.96); } }
+  @keyframes fade { from { opacity: 0; } }
+}
+.dlg-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 14px 14px 24px; border-bottom: 1px solid var(--rule); }
+.dlg-head h2 { font-size: 22px; letter-spacing: -0.025em; }
+.close { display: grid; place-items: center; width: 44px; height: 44px; background: none; border: 0; cursor: pointer; }
+.close svg { width: 14px; height: 14px; }
+.dlg-body { padding: 24px; }
+.specs { display: grid; grid-template-columns: 1fr 1fr; margin: 20px 0 24px; border-top: 1px solid var(--rule); font-variant-numeric: tabular-nums; }
+.specs div { padding: 10px 0; border-bottom: 1px solid var(--rule); }
+.specs div:nth-child(odd) { padding-right: 16px; }
+.specs dt { font-size: 13px; color: var(--ink-2); }
+.specs dd { margin: 0; font-size: 17px; letter-spacing: -0.01em; }
+.dlg-detail .ph { aspect-ratio: 7 / 4; margin: -24px -24px 0; }
+.dlg-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
+
+.form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.field { display: grid; gap: 6px; min-width: 0; align-content: start; }
+.field.full { grid-column: 1 / -1; }
+.field label { font-size: 14px; font-weight: 500; }
+.form input, .form select {
+  width: 100%; min-height: 48px; padding: 0 12px; border-radius: 0;
+  background: var(--surface); border: 1px solid var(--rule); font-size: 16px; appearance: none; -webkit-appearance: none;
+}
+.form select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%230B0B0C' stroke-width='1.6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px; }
+.form input:focus-visible, .form select:focus-visible { outline: 2px solid var(--ink); outline-offset: 0; }
+.form [aria-invalid="true"] { border-color: var(--error); box-shadow: inset 0 0 0 1px var(--error); }
+.form .err { font-size: 14px; color: var(--error); }
+.form .err:empty { display: none; }
+.form-foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 4px; }
+.form-foot p { font-size: 14px; color: var(--ink-2); }
+.btn[aria-busy="true"] { pointer-events: none; }
+.spinner { width: 14px; height: 14px; border: 2px solid rgb(255 255 255 / .4); border-top-color: #fff; border-radius: 50%; animation: spin 700ms linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.done p { font-size: 20px; line-height: 1.3; letter-spacing: -0.02em; }
+.done p + p { margin-top: 10px; font-size: 15px; letter-spacing: 0; color: var(--ink-2); }
 
 /* ---------- Responsive ---------- */
-@media (max-width: 1080px) {
-  .car, .stock-head { grid-template-columns: minmax(0, 2fr) .7fr 1.1fr 1fr 6.5rem; }
-  .car dd.gearbox, .stock-head .gearbox { display: none; }
+@media (max-width: 1000px) {
+  .callout { position: static; width: auto; }
+  .callout::after { display: none; }
+  .callouts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
 }
-@media (max-width: 820px) {
+@media (max-width: 860px) {
   :root { --pad: 20px; }
   .header { grid-template-columns: auto 1fr; padding: 0 var(--gutter); }
   .nav { display: none; }
-  .split { grid-template-columns: 1fr; }
+  .split, .latest-top, .band { grid-template-columns: 1fr; }
   .split > * + * { border-left: 0; border-top: 1px solid var(--rule); }
   .hero-media { aspect-ratio: 2 / 1; }
   .hero-media img { object-position: 46% 50%; }
-  .hero-split > :first-child { padding-bottom: 32px; }
-  .hero-split > :last-child { padding-bottom: 48px; }
-  .stock-head { display: none; }
-  .car {
-    grid-template-columns: 1fr auto;
-    grid-template-areas: "name price" "meta meta" "cta cta";
-    row-gap: 6px; padding: 18px var(--pad);
-  }
-  .car-name { grid-area: name; }
-  .car .price { grid-area: price; align-self: start; }
-  .car .meta { grid-area: meta; display: flex; flex-wrap: wrap; gap: 4px 14px; color: var(--ink-2); font-size: 15px; }
-  .car .meta dd { font-size: 15px; }
-  .car .meta dd.gearbox { display: block; }
-  .car-cta { grid-area: cta; justify-self: start; padding-left: 0; }
-  .promise { grid-template-columns: 1fr; gap: 4px; }
-  .form { grid-template-columns: 1fr; }
+  .proofs { grid-template-columns: 1fr 1fr; grid-template-rows: auto; gap: 28px 0; padding-top: 0; border-top: 0; }
+  .proofs::before { display: none; }
+  .proofs .ph { grid-column: 1 / -1; grid-row: 1; }
+  .proof, .proof:nth-of-type(n) { grid-column: auto; grid-row: auto; padding: 0 12px; flex-direction: column; }
+  .proof-line { display: none; }
+  .proof-text { width: auto; }
+  .grid { grid-template-columns: 1fr 1fr; grid-template-rows: none; }
+  .grid .spacer { display: none; }
+  .cell, .cell:nth-child(n) { border-right: 0; border-bottom: 1px solid var(--rule); }
+  .cell::after { display: none; }
+  .intro-cell, .carousel-cell { grid-column: 1 / -1; }
+  .controls-cell { grid-column: 1 / -1; order: 1; justify-content: flex-end; border-bottom: 0; }
+  .carousel-cell { order: 0; }
+  .intro-cell { order: -1; }
+  .tile { order: 2; min-height: 0; }
+  .tile:nth-child(odd) { border-right: 1px solid var(--rule); }
+  .carousel { min-height: 0; aspect-ratio: 7 / 4; }
+  .band .ph { min-height: 200px; }
+  .cards { grid-template-columns: 1fr 1fr; }
+  .row { grid-template-columns: minmax(0, 1fr) auto 5rem; row-gap: 2px; }
+  .row .km, .row .year { display: none; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-grid > :first-child { grid-column: 1 / -1; }
 }
-@media (min-width: 821px) { .car .meta { display: contents; } }
-@media (max-width: 420px) {
-  .header-cta { font-size: 16px; }
-  .facts { grid-template-columns: 1fr; }
+@media (max-width: 520px) {
+  .callouts { grid-template-columns: 1fr; }
+  .cards { grid-template-columns: 1fr; }
+  .tile, .tile:nth-child(odd) { grid-column: 1 / -1; border-right: 0; }
+  .form { grid-template-columns: 1fr; }
+  .header .link { font-size: 14px; }
 }
 </style>
 </head>
@@ -326,180 +389,180 @@ h1, h2, h3 { text-wrap: balance; }
 <a class="skip" href="#contenu">Aller au contenu</a>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="arrow" viewBox="0 0 12 12"><path d="M2.5 9.5l7-7M3.75 2.5H9.5v5.75" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></symbol>
+  <symbol id="i-go" viewBox="0 0 12 12"><path d="M2 1.5v6h8M7.5 5l2.5 2.5L7.5 10" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+  <symbol id="i-mark" viewBox="0 0 46 34"><path d="M21.2 9.6A9.6 9.6 0 1 0 21.2 22.4" fill="none" stroke="currentColor" stroke-width="5.4"/><path d="M38.2 15.6A9.6 9.6 0 1 0 38.2 28.4" fill="none" stroke="currentColor" stroke-width="5.4"/></symbol>
+  <symbol id="i-prev" viewBox="0 0 12 12"><path d="M8 1.5L3.5 6 8 10.5" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-next" viewBox="0 0 12 12"><path d="M4 1.5L8.5 6 4 10.5" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 14 14"><path d="M1.5 1.5l11 11M12.5 1.5l-11 11" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 16 16"><path d="M1.5 3.5h13v9h-13zM1.5 4l6.5 5 6.5-5" fill="none" stroke="currentColor" stroke-width="1.3"/></symbol>
+  <symbol id="i-file" viewBox="0 0 26 26"><path d="M6 2.5h10l4.5 4.5v16.5H6zM15.5 2.5V7.5h5M9.5 12.5h7M9.5 16.5h7M9.5 20.5h4" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-card" viewBox="0 0 26 26"><path d="M2.5 6.5h21v13h-21zM2.5 10.5h21M6 15.5h5" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 26 26"><path d="M1.5 6.5h14v11h-14zM15.5 10.5h5l4 4v3h-9" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="6" cy="19.5" r="2" fill="var(--bg)" stroke="currentColor" stroke-width="1.5"/><circle cx="19.5" cy="19.5" r="2" fill="var(--bg)" stroke="currentColor" stroke-width="1.5"/></symbol>
+  <symbol id="i-dot" viewBox="0 0 16 16"><path d="M8 1.5l6.5 6.5L8 14.5 1.5 8z" fill="currentColor"/></symbol>
 </svg>
 
 <header class="header">
-  <a class="logo" href="#top" aria-label="Courbe Automobiles, accueil">
-    <svg viewBox="0 0 46 34" aria-hidden="true">
-      <path d="M21.2 9.6A9.6 9.6 0 1 0 21.2 22.4" fill="none" stroke="#0B0B0C" stroke-width="5.4"/>
-      <path d="M38.2 15.6A9.6 9.6 0 1 0 38.2 28.4" fill="none" stroke="#0B0B0C" stroke-width="5.4"/>
-    </svg>
-  </a>
+  <a class="logo" href="#top" aria-label="Courbe Automobiles, accueil"><svg viewBox="0 0 46 34" style="color:var(--ink)" aria-hidden="true"><use href="#i-mark"/></svg></a>
   <nav class="nav" aria-label="Navigation principale">
-    <a href="#vehicules">Véhicules</a>
-    <a href="#concession">La concession</a>
+    <a href="#top" aria-current="page">Accueil</a>
+    <a href="#dernieres">Véhicules</a>
+    <a href="#controle">L’atelier</a>
+    <a href="#arrivages">Arrivages</a>
     <a href="#contact">Contact</a>
   </nav>
-  <a class="header-cta" href="#essai">Réserver un essai <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
+  <button class="link" type="button" data-book>Réserver un essai <svg class="ic" aria-hidden="true"><use href="#i-go"/></svg></button>
 </header>
 
 <main id="contenu">
-  <!-- Hero -->
-  <section id="top" aria-labelledby="titre">
+  <!-- ============ Planche 1 ============ -->
+  <section class="board" id="top" aria-labelledby="titre">
     <div class="hero-media">
       <img src="assets/hero-break-rouge.webp" width="1364" height="470" alt="Break sportif rouge vu de profil dans un studio gris" fetchpriority="high">
     </div>
     <div class="split hero-split">
       <div>
-        <h1 id="titre" class="wordmark">Courbe <small>Automobiles</small></h1>
+        <h1 id="titre" class="wordmark">Courbe<span class="sr"> Automobiles, voitures d’occasion à Lyon</span></h1>
+        <p class="small">Courbe Automobiles sélectionne des voitures d’occasion à Lyon 7<sup>e</sup>&#8239;: breaks, berlines, coupés et SUV choisis un par un, contrôlés en 120 points à l’atelier et garantis 12 mois. Chaque voiture est visible en concession et disponible à l’essai.</p>
       </div>
       <div>
-        <p class="lead">Une sélection de voitures à conduire.</p>
-        <a class="btn" href="#vehicules">Voir les véhicules <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Véhicules -->
-  <section id="vehicules" class="section" aria-labelledby="t-vehicules">
-    <div class="split section-head" style="margin:0">
-      <div><h2 id="t-vehicules" class="h2">En stock</h2></div>
-      <div>
-        <p class="intro">Peu de voitures, choisies une par une. Toutes sont visibles à la concession et disponibles à l’essai, sur rendez-vous.</p>
-      </div>
-    </div>
-
-    <div class="stock-bar">
-      <fieldset class="filters">
-        <legend>Filtrer par carrosserie</legend>
-        <button class="chip" type="button" data-filter="all" aria-pressed="true">Tous</button>
-        <button class="chip" type="button" data-filter="Break" aria-pressed="false">Break</button>
-        <button class="chip" type="button" data-filter="Berline" aria-pressed="false">Berline</button>
-        <button class="chip" type="button" data-filter="Coupé" aria-pressed="false">Coupé</button>
-        <button class="chip" type="button" data-filter="SUV" aria-pressed="false">SUV</button>
-      </fieldset>
-      <p class="count" id="count" aria-live="polite"></p>
-    </div>
-
-    <div class="stock-head" aria-hidden="true">
-      <span>Modèle</span><span>Année</span><span>Kilométrage</span><span class="gearbox">Boîte</span><span>Prix</span><span></span>
-    </div>
-    <ul class="stock" id="stock"></ul>
-    <div class="empty" id="empty" hidden>
-      <p>Aucun véhicule de ce type en ce moment. <button type="button" id="reset">Voir tout le stock</button> ou <a href="#essai">dites-nous ce que vous cherchez</a>.</p>
-    </div>
-  </section>
-
-  <!-- Concession -->
-  <section id="concession" class="section" aria-labelledby="t-concession">
-    <div class="split" style="margin:0">
-      <div>
-        <h2 id="t-concession" class="h2">Avant la vitrine, l’atelier.</h2>
-      </div>
-      <div>
-        <p class="intro">Une voiture n’entre dans notre sélection qu’après un essai sur route et un passage complet à l’atelier. Si elle ne nous donne pas envie de la conduire, elle repart.</p>
-        <div class="promises">
-          <div class="promise">
-            <h3>Révisée</h3>
-            <p>Contrôle en 120 points, vidange, freins et pneus remis à niveau avant la mise en vente. Le rapport vous est remis.</p>
-          </div>
-          <div class="promise">
-            <h3>Garantie 12 mois</h3>
-            <p>Pièces et main-d’œuvre, prolongeable jusqu’à 36 mois. Valable dans tout le réseau partenaire.</p>
-          </div>
-          <div class="promise">
-            <h3>Reprise</h3>
-            <p>Votre voiture actuelle estimée sur place en 30 minutes, déduite directement du prix.</p>
-          </div>
+        <p class="lead">Une sélection de voitures à conduire, choisies une par une, révisées à l’atelier et prêtes à refaire de chaque trajet un plaisir.</p>
+        <div class="ctas">
+          <a class="btn" href="#dernieres">Voir les véhicules <svg class="ic" aria-hidden="true"><use href="#i-go"/></svg></a>
+          <button class="link" type="button" data-book>Réserver un essai</button>
         </div>
-        <div class="facts" id="contact">
-          <div>
-            <h3>Adresse</h3>
-            <address>14 rue Marcel-Mérieux<br>69007 Lyon</address>
-          </div>
-          <div>
-            <h3>Horaires</h3>
-            <p>Mardi – samedi<br>9 h – 19 h</p>
-          </div>
-          <div>
-            <h3>Téléphone</h3>
-            <p><a href="tel:+33478000000">04 78 00 00 00</a></p>
-          </div>
-          <div>
-            <h3>E-mail</h3>
-            <p><a href="mailto:bonjour@courbe-automobiles.fr">bonjour@courbe-automobiles.fr</a></p>
-          </div>
+      </div>
+    </div>
+
+    <div class="proofs" aria-label="Nos engagements">
+      <figure class="ph" data-label="Image 02 — voiture de trois quarts avant">
+        <img src="assets/02-trois-quarts.webp" width="1600" height="900" alt="Le break rouge vu de trois quarts avant, en studio" loading="lazy" onerror="this.remove()">
+      </figure>
+      <div class="proof"><p class="proof-text"><svg aria-hidden="true"><use href="#i-mark"/></svg>Plus de 300 voitures livrées depuis 2019</p><span class="proof-line" aria-hidden="true"></span></div>
+      <div class="proof"><p class="proof-text"><svg aria-hidden="true"><use href="#i-mark"/></svg>Votre reprise estimée en 30&nbsp;minutes</p><span class="proof-line" aria-hidden="true"></span></div>
+      <div class="proof"><p class="proof-text"><svg aria-hidden="true"><use href="#i-mark"/></svg>Garantie 12&nbsp;mois sur chaque véhicule</p><span class="proof-line" aria-hidden="true"></span></div>
+      <div class="proof"><p class="proof-text"><svg aria-hidden="true"><use href="#i-mark"/></svg>Contrôle en 120 points avant la vente</p><span class="proof-line" aria-hidden="true"></span></div>
+    </div>
+  </section>
+
+  <section class="paper" id="controle" aria-labelledby="t-controle">
+    <div class="board check">
+      <div class="check-head">
+        <h2 id="t-controle" class="display">Un contrôle complet, point par point, avant chaque mise en vente</h2>
+        <p class="small">Choisissez une étape pour voir ce que l’atelier vérifie. Le rapport complet est remis avec la voiture.</p>
+      </div>
+      <div class="schema">
+        <figure class="ph" data-label="Image 03 — dessin technique de la voiture">
+          <img src="assets/03-schema.webp" width="2000" height="1000" alt="Dessin technique au trait d’une voiture sur pont élévateur, roues et moteur détaillés" loading="lazy" onerror="this.remove()">
+        </figure>
+        <div class="callouts" role="group" aria-label="Étapes du contrôle">
+          <button class="callout c1" type="button" aria-pressed="true"><svg aria-hidden="true"><use href="#i-dot"/></svg><b>Freinage</b><span>Disques et plaquettes mesurés, remplacés au-delà de 50&nbsp;% d’usure.</span></button>
+          <button class="callout c2" type="button" aria-pressed="false"><svg aria-hidden="true"><use href="#i-dot"/></svg><b>Pneumatiques</b><span>Quatre pneus de même marque, plus de 4&nbsp;mm de gomme.</span></button>
+          <button class="callout c3" type="button" aria-pressed="false"><svg aria-hidden="true"><use href="#i-dot"/></svg><b>Moteur et boîte</b><span>Diagnostic électronique, vidange et filtres neufs.</span></button>
+          <button class="callout c4" type="button" aria-pressed="false"><svg aria-hidden="true"><use href="#i-dot"/></svg><b>Carrosserie</b><span>Épaisseur de peinture mesurée panneau par panneau.</span></button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Essai -->
-  <section id="essai" class="section" aria-labelledby="t-essai">
-    <div class="split" style="margin:0">
-      <div>
-        <h2 id="t-essai" class="h2">Réserver un essai</h2>
+  <!-- ============ Planche 2 ============ -->
+  <section class="board" id="arrivages" aria-labelledby="t-arrivages">
+    <div class="grid">
+      <div class="cell spacer"></div><div class="cell spacer"></div><div class="cell spacer"></div>
+
+      <div class="cell intro-cell">
+        <h2 id="t-arrivages" class="display">Les prochaines voitures sont déjà à l’atelier</h2>
+        <div>
+          <a class="btn" href="#newsletter" data-focus-email>Être prévenu <svg class="ic" aria-hidden="true"><use href="#i-go"/></svg></a>
+          <p class="small"><strong>Arrivée mi-décembre 2026</strong> — réservations ouvertes. Essayez-les avant leur mise en vente.</p>
+        </div>
       </div>
-      <div id="essai-zone">
-        <p class="intro" style="margin-bottom:28px">Choisissez une voiture et un jour. On vous rappelle dans la journée pour fixer l’heure.</p>
-        <form class="form" id="form" novalidate>
+      <div class="cell tile">
+        <svg aria-hidden="true"><use href="#i-file"/></svg>
+        <div><h3>Historique vérifié</h3><p>Carnet d’entretien, kilométrage et Histovec contrôlés avant chaque achat. Le dossier complet vous est remis.</p></div>
+      </div>
+      <div class="cell tile">
+        <svg aria-hidden="true"><use href="#i-card"/></svg>
+        <div><h3>Financement sur mesure</h3><p>Crédit ou location avec option d’achat, simulés avec vous en concession. Réponse de principe sous 48&nbsp;h.</p></div>
+      </div>
+
+      <div class="cell carousel-cell">
+        <div class="carousel" role="region" aria-roledescription="carrousel" aria-label="Prochains arrivages" id="carousel"></div>
+      </div>
+      <div class="cell controls-cell">
+        <div class="arrows">
+          <button type="button" id="prev" aria-label="Voiture précédente"><svg aria-hidden="true"><use href="#i-prev"/></svg></button>
+          <button type="button" id="next" aria-label="Voiture suivante"><svg aria-hidden="true"><use href="#i-next"/></svg></button>
+        </div>
+      </div>
+      <div class="cell tile">
+        <svg aria-hidden="true"><use href="#i-truck"/></svg>
+        <div><h3>Livraison chez vous</h3><p>Partout en France, sur plateau fermé. La voiture arrive lavée, le plein fait, avec sa carte grise.</p></div>
+      </div>
+
+      <div class="cell spacer"></div><div class="cell spacer"></div><div class="cell spacer"></div>
+    </div>
+
+    <div class="band" id="newsletter">
+      <div class="band-text">
+        <h2 class="display">Les nouveaux arrivages, avant leur mise en ligne.</h2>
+        <form class="band-form" id="news" novalidate>
           <div class="field">
-            <label for="nom">Nom</label>
-            <input id="nom" name="nom" type="text" autocomplete="name" required aria-describedby="nom-err">
-            <p class="err" id="nom-err"></p>
+            <label class="sr" for="email">Adresse e-mail</label>
+            <div class="email-wrap">
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="Votre e-mail" required aria-describedby="email-err">
+              <svg aria-hidden="true"><use href="#i-mail"/></svg>
+            </div>
+            <p class="err" id="email-err"></p>
           </div>
-          <div class="field">
-            <label for="tel">Téléphone</label>
-            <input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="tel-err">
-            <p class="err" id="tel-err"></p>
-          </div>
-          <div class="field full">
-            <label for="vehicule">Véhicule</label>
-            <select id="vehicule" name="vehicule" required aria-describedby="vehicule-err">
-              <option value="">Choisir un véhicule</option>
-            </select>
-            <p class="err" id="vehicule-err"></p>
-          </div>
-          <div class="field full">
-            <label for="date">Jour souhaité</label>
-            <input id="date" name="date" type="date" required aria-describedby="date-err">
-            <p class="err" id="date-err"></p>
-          </div>
-          <div class="form-foot">
-            <button class="btn" type="submit" id="submit">Réserver un essai <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></button>
-            <p>Permis de plus de 3 ans demandé le jour de l’essai.</p>
-          </div>
+          <button class="btn white" type="submit">S’abonner <svg class="ic" aria-hidden="true"><use href="#i-go"/></svg></button>
+          <p class="note">Un e-mail quand une voiture entre à l’atelier. Deux par mois au plus, désinscription en un clic.</p>
         </form>
       </div>
+      <figure class="ph" data-label="Image 07 — illustration isométrique orange">
+        <img src="assets/07-bandeau.webp" width="1200" height="1000" alt="" loading="lazy" onerror="this.remove()">
+      </figure>
+    </div>
+
+    <div class="latest" id="dernieres" aria-labelledby="t-dernieres">
+      <div class="latest-top">
+        <div class="latest-intro">
+          <h2 id="t-dernieres" class="display">Les dernières voitures arrivées en concession</h2>
+          <div>
+            <p class="small"><strong id="stock-count">8 véhicules en stock</strong> — visibles à Lyon 7<sup>e</sup>, essai sur rendez-vous.</p>
+            <button class="btn" type="button" id="toggle-stock" aria-expanded="false" aria-controls="all-stock">Tout le stock <svg class="ic" aria-hidden="true"><use href="#i-go"/></svg></button>
+          </div>
+        </div>
+        <div class="card" data-card="rs4"></div>
+      </div>
+      <div class="cards">
+        <div class="card" data-card="m2"></div>
+        <div class="card" data-card="v90"></div>
+        <div class="card" data-card="macan"></div>
+      </div>
+      <div class="all-stock" id="all-stock" hidden></div>
     </div>
   </section>
 </main>
 
-<footer class="footer">
+<footer class="footer" id="contact">
   <div class="footer-grid">
-    <p class="footer-brand">Courbe Automobiles, véhicules d’occasion sélectionnés à Lyon 7<sup>e</sup>.</p>
+    <p class="footer-brand">Courbe Automobiles, voitures d’occasion sélectionnées à Lyon 7<sup>e</sup>.</p>
     <div>
-      <h2>Le site</h2>
-      <ul>
-        <li><a href="#vehicules">Véhicules</a></li>
-        <li><a href="#concession">La concession</a></li>
-        <li><a href="#essai">Réserver un essai</a></li>
-      </ul>
+      <h2>Concession</h2>
+      <address>14 rue Marcel-Mérieux<br>69007 Lyon</address>
+      <p style="margin-top:8px">Mardi – samedi, 9&nbsp;h – 19&nbsp;h</p>
     </div>
     <div>
       <h2>Nous joindre</h2>
       <ul>
         <li><a href="tel:+33478000000">04 78 00 00 00</a></li>
-        <li><a href="mailto:bonjour@courbe-automobiles.fr">E-mail</a></li>
+        <li><a href="mailto:bonjour@courbe-automobiles.fr">bonjour@courbe-automobiles.fr</a></li>
+        <li><button type="button" data-book>Réserver un essai</button></li>
       </ul>
     </div>
     <div>
       <h2>Suivre</h2>
-      <ul>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">LinkedIn</a></li>
-      </ul>
+      <ul><li><a href="#">Instagram</a></li><li><a href="#">LinkedIn</a></li></ul>
     </div>
   </div>
   <div class="legal">
@@ -508,114 +571,187 @@ h1, h2, h3 { text-wrap: balance; }
   </div>
 </footer>
 
+<!-- Fiche véhicule -->
+<dialog id="dlg-car" aria-labelledby="car-title">
+  <div class="dlg-head"><h2 id="car-title"></h2><button class="close" type="button" data-close aria-label="Fermer"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
+  <div class="dlg-body dlg-detail" id="car-body"></div>
+</dialog>
+
+<!-- Réservation d’essai -->
+<dialog id="dlg-book" aria-labelledby="book-title">
+  <div class="dlg-head"><h2 id="book-title">Réserver un essai</h2><button class="close" type="button" data-close aria-label="Fermer"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
+  <div class="dlg-body" id="book-body">
+    <p class="small" style="margin-bottom:20px">Choisissez une voiture et un jour. On vous rappelle dans la journée pour fixer l’heure.</p>
+    <form class="form" id="book" novalidate>
+      <div class="field"><label for="nom">Nom</label><input id="nom" name="nom" autocomplete="name" required aria-describedby="nom-err"><p class="err" id="nom-err"></p></div>
+      <div class="field"><label for="tel">Téléphone</label><input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="tel-err"><p class="err" id="tel-err"></p></div>
+      <div class="field full"><label for="vehicule">Véhicule</label><select id="vehicule" name="vehicule" required aria-describedby="vehicule-err"><option value="">Choisir un véhicule</option></select><p class="err" id="vehicule-err"></p></div>
+      <div class="field full"><label for="date">Jour souhaité</label><input id="date" name="date" type="date" required aria-describedby="date-err"><p class="err" id="date-err"></p></div>
+      <div class="form-foot">
+        <button class="btn" type="submit" id="book-submit">Réserver un essai <svg class="ic" aria-hidden="true"><use href="#i-go"/></svg></button>
+        <p>Permis de plus de 3 ans demandé.</p>
+      </div>
+    </form>
+  </div>
+</dialog>
+
 <script>
+/* Stock — contenu d’exemple à remplacer */
 const STOCK = [
-  { id: "pan-st", name: "Porsche Panamera 4 Sport Turismo", version: "E-Hybrid, 462 ch", type: "Break", year: 2021, km: 38500, gearbox: "Automatique", price: 89900 },
-  { id: "rs4", name: "Audi RS 4 Avant", version: "2.9 TFSI V6, 450 ch", type: "Break", year: 2019, km: 61200, gearbox: "Automatique", price: 54900 },
-  { id: "v90", name: "Volvo V90 Recharge", version: "T6 AWD Inscription", type: "Break", year: 2022, km: 44000, gearbox: "Automatique", price: 46500 },
-  { id: "a110", name: "Alpine A110 Légende", version: "1.8 T, 252 ch", type: "Coupé", year: 2019, km: 22000, gearbox: "Automatique", price: 52900 },
-  { id: "m2", name: "BMW M2 Compétition", version: "3.0, 410 ch", type: "Coupé", year: 2020, km: 27800, gearbox: "Manuelle", price: 58500 },
-  { id: "508", name: "Peugeot 508 PSE", version: "Hybrid4, 360 ch", type: "Berline", year: 2022, km: 19600, gearbox: "Automatique", price: 44900 },
-  { id: "e300", name: "Mercedes Classe E 300 e", version: "AMG Line", type: "Berline", year: 2021, km: 48900, gearbox: "Automatique", price: 39900 },
-  { id: "macan", name: "Porsche Macan S", version: "2.9 V6, 380 ch", type: "SUV", year: 2020, km: 55300, gearbox: "Automatique", price: 57900 },
+  { id: "pan", name: "Porsche Panamera 4 Sport Turismo", tag: "Le break de grand tourisme", year: 2021, km: 38500, gearbox: "Automatique", energy: "Hybride rechargeable", price: 89900, img: "assets/hero-break-rouge.webp" },
+  { id: "rs4", name: "Audi RS 4 Avant", tag: "Le break du quotidien, en plus vif", year: 2019, km: 61200, gearbox: "Automatique", energy: "Essence", price: 54900, img: "assets/08-vedette.webp", label: "Image 08 — vedette, vue de profil" },
+  { id: "m2", name: "BMW M2 Compétition", tag: "La propulsion compacte", year: 2020, km: 27800, gearbox: "Manuelle", energy: "Essence", price: 58500, img: "assets/09-carte-gris.webp", label: "Image 09 — fond gris" },
+  { id: "v90", name: "Volvo V90 Recharge", tag: "Le break silencieux", year: 2022, km: 44000, gearbox: "Automatique", energy: "Hybride rechargeable", price: 46500, img: "assets/10-carte-sauge.webp", label: "Image 10 — fond vert sauge" },
+  { id: "macan", name: "Porsche Macan S", tag: "Le SUV qui se conduit", year: 2020, km: 55300, gearbox: "Automatique", energy: "Essence", price: 57900, img: "assets/11-carte-sable.webp", label: "Image 11 — fond sable" },
+  { id: "a110", name: "Alpine A110 Légende", tag: "La sportive légère", year: 2019, km: 22000, gearbox: "Automatique", energy: "Essence", price: 52900 },
+  { id: "508", name: "Peugeot 508 PSE", tag: "La berline sportive hybride", year: 2022, km: 19600, gearbox: "Automatique", energy: "Hybride rechargeable", price: 44900 },
+  { id: "e300", name: "Mercedes Classe E 300 e", tag: "La routière", year: 2021, km: 48900, gearbox: "Automatique", energy: "Hybride rechargeable", price: 39900 },
+];
+const SOON = [
+  { name: "Porsche 911 Carrera S", tag: "Arrivée mi-décembre", img: "assets/04-arrivage-1.webp", label: "Image 04 — arrivage 1" },
+  { name: "Audi RS 6 Avant", tag: "Arrivée mi-décembre", img: "assets/05-arrivage-2.webp", label: "Image 05 — arrivage 2" },
+  { name: "Alpine A110 GT", tag: "Arrivée fin décembre", img: "assets/06-arrivage-3.webp", label: "Image 06 — arrivage 3" },
 ];
 
 const nf = new Intl.NumberFormat("fr-FR");
 const eur = new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
-const list = document.getElementById("stock");
-const count = document.getElementById("count");
-const empty = document.getElementById("empty");
-const select = document.getElementById("vehicule");
-const arrow = '<svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg>';
+const go = '<svg class="ic" aria-hidden="true"><use href="#i-go"/></svg>';
+const byId = id => STOCK.find(c => c.id === id);
+const ph = (src, label, alt, w, h, lazy = true) =>
+  `<figure class="ph" data-label="${label || ""}"><img src="${src}" width="${w}" height="${h}" alt="${alt}" ${lazy ? 'loading="lazy"' : ""} onerror="this.remove()"></figure>`;
 
-function render(filter) {
-  const items = STOCK.filter(c => filter === "all" || c.type === filter);
-  list.innerHTML = items.map(c => `
-    <li class="car">
-      <h3 class="car-name">${c.name}<span>${c.version} · ${c.type}</span></h3>
-      <dl class="meta">
-        <dt>Année</dt><dd>${c.year}</dd>
-        <dt>Kilométrage</dt><dd>${nf.format(c.km)} km</dd>
-        <dt>Boîte</dt><dd class="gearbox">${c.gearbox}</dd>
+/* Cartes */
+document.querySelectorAll("[data-card]").forEach(el => {
+  const c = byId(el.dataset.card);
+  el.innerHTML = ph(c.img, c.label, `${c.name}, vue de profil`, 1400, 800) +
+    `<div class="card-cap"><p>${c.name}<span>[${c.tag}]</span></p><button class="link" type="button" data-detail="${c.id}">Détails ${go}</button></div>`;
+});
+document.getElementById("stock-count").textContent = `${STOCK.length} véhicules en stock`;
+
+/* Tout le stock */
+const allStock = document.getElementById("all-stock");
+allStock.innerHTML = STOCK.map(c => `<div class="row"><b>${c.name}</b><span class="year">${c.year}</span><span class="km">${nf.format(c.km)} km</span><span class="price">${eur.format(c.price)}</span><button class="link" type="button" data-detail="${c.id}">Détails ${go}</button></div>`).join("");
+const toggle = document.getElementById("toggle-stock");
+toggle.addEventListener("click", () => {
+  const open = toggle.getAttribute("aria-expanded") === "true";
+  toggle.setAttribute("aria-expanded", String(!open));
+  allStock.hidden = open;
+  toggle.firstChild.textContent = open ? "Tout le stock " : "Masquer le stock ";
+});
+
+/* Schéma : étapes du contrôle */
+const callouts = document.querySelectorAll(".callout");
+callouts.forEach(b => b.addEventListener("click", () => callouts.forEach(o => o.setAttribute("aria-pressed", String(o === b)))));
+
+/* Carrousel */
+const car = document.getElementById("carousel");
+car.innerHTML = SOON.map((s, i) => `<figure class="slide${i ? "" : " is-on"}" role="group" aria-roledescription="diapositive" aria-label="${i + 1} sur ${SOON.length}">
+  ${ph(s.img, s.label, `${s.name} en mouvement`, 1400, 800)}
+  <figcaption><p>${s.name} —<br><span>[${s.tag}]</span></p></figcaption></figure>`).join("") +
+  `<div class="dots" aria-hidden="true">${SOON.map((_, i) => `<i class="${i ? "" : "is-on"}"></i>`).join("")}</div>
+   <p class="sr" aria-live="polite" id="slide-live"></p>`;
+let cur = 0;
+function show(n) {
+  cur = (n + SOON.length) % SOON.length;
+  car.querySelectorAll(".slide").forEach((s, i) => s.classList.toggle("is-on", i === cur));
+  car.querySelectorAll(".dots i").forEach((d, i) => d.classList.toggle("is-on", i === cur));
+  document.getElementById("slide-live").textContent = `${SOON[cur].name}, ${SOON[cur].tag}`;
+}
+document.getElementById("prev").addEventListener("click", () => show(cur - 1));
+document.getElementById("next").addEventListener("click", () => show(cur + 1));
+
+/* Dialogues */
+const dlgCar = document.getElementById("dlg-car"), dlgBook = document.getElementById("dlg-book");
+document.querySelectorAll("[data-close]").forEach(b => b.addEventListener("click", () => b.closest("dialog").close()));
+[dlgCar, dlgBook].forEach(d => d.addEventListener("click", e => { if (e.target === d) d.close(); }));
+
+document.addEventListener("click", e => {
+  const det = e.target.closest("[data-detail]");
+  if (det) {
+    const c = byId(det.dataset.detail);
+    document.getElementById("car-title").textContent = c.name;
+    document.getElementById("car-body").innerHTML =
+      (c.img ? ph(c.img, c.label, `${c.name}, vue de profil`, 1400, 800, false) : "") +
+      `<dl class="specs">
+        <div><dt>Année</dt><dd>${c.year}</dd></div>
+        <div><dt>Kilométrage</dt><dd>${nf.format(c.km)} km</dd></div>
+        <div><dt>Boîte</dt><dd>${c.gearbox}</dd></div>
+        <div><dt>Énergie</dt><dd>${c.energy}</dd></div>
+        <div><dt>Prix</dt><dd><b>${eur.format(c.price)}</b></dd></div>
+        <div><dt>Garantie</dt><dd>12 mois</dd></div>
       </dl>
-      <p class="price"><span class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)">Prix : </span>${eur.format(c.price)}</p>
-      <a class="car-cta" href="#essai" data-car="${c.id}" aria-label="Réserver un essai : ${c.name}">Essayer ${arrow}</a>
-    </li>`).join("");
-  const n = items.length;
-  count.textContent = n ? `${n} véhicule${n > 1 ? "s" : ""} disponible${n > 1 ? "s" : ""}` : "";
-  empty.hidden = n !== 0;
-}
+      <div class="dlg-actions"><button class="btn" type="button" data-book="${c.id}">Réserver un essai ${go}</button><span class="small">${c.tag}</span></div>`;
+    dlgCar.showModal();
+    return;
+  }
+  const book = e.target.closest("[data-book]");
+  if (book) {
+    if (dlgCar.open) dlgCar.close();
+    resetBook();
+    if (book.dataset.book) select.value = book.dataset.book;
+    dlgBook.showModal();
+  }
+  const fe = e.target.closest("[data-focus-email]");
+  if (fe) setTimeout(() => document.getElementById("email").focus({ preventScroll: true }), 400);
+});
 
-document.querySelectorAll(".chip").forEach(chip => {
-  chip.addEventListener("click", () => {
-    document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", String(c === chip)));
-    render(chip.dataset.filter);
+/* Formulaire d’essai */
+const bookBody = document.getElementById("book-body");
+const bookTpl = bookBody.innerHTML;
+let select;
+function resetBook() {
+  bookBody.innerHTML = bookTpl;
+  select = document.getElementById("vehicule");
+  select.insertAdjacentHTML("beforeend", STOCK.map(c => `<option value="${c.id}">${c.name} — ${eur.format(c.price)}</option>`).join("") + '<option value="autre">Autre / je ne sais pas encore</option>');
+  const date = document.getElementById("date");
+  const t = new Date(); t.setDate(t.getDate() + 1); date.min = t.toISOString().slice(0, 10);
+  const form = document.getElementById("book");
+  form.addEventListener("input", e => { if (e.target.getAttribute("aria-invalid") === "true") validateBook(form); });
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const bad = validateBook(form);
+    if (bad.length) { bad[0].focus(); return; }
+    const btn = document.getElementById("book-submit");
+    btn.setAttribute("aria-busy", "true");
+    btn.querySelector(".ic").replaceWith(Object.assign(document.createElement("span"), { className: "spinner" }));
+    // Démo : à brancher sur le vrai service d’envoi
+    setTimeout(() => {
+      const c = byId(select.value);
+      const jour = new Intl.DateTimeFormat("fr-FR", { weekday: "long", day: "numeric", month: "long" }).format(new Date(date.value + "T12:00"));
+      bookBody.innerHTML = `<div class="done" tabindex="-1" id="done"><p>Essai demandé pour le ${jour}${c ? `, au volant de la ${c.name}` : ""}.</p><p>On vous appelle au ${form.tel.value.trim()} dans la journée pour fixer l’heure.</p></div>`;
+      document.getElementById("done").focus();
+    }, 900);
   });
-});
-document.getElementById("reset").addEventListener("click", () => document.querySelector('.chip[data-filter="all"]').click());
-
-select.insertAdjacentHTML("beforeend", STOCK.map(c => `<option value="${c.id}">${c.name} — ${eur.format(c.price)}</option>`).join("")
-  + '<option value="autre">Autre / je ne sais pas encore</option>');
-
-list.addEventListener("click", e => {
-  const a = e.target.closest("[data-car]");
-  if (!a) return;
-  select.value = a.dataset.car;
-  setError(select, "");
-});
-
-/* Date : pas avant demain, ni le dimanche/lundi (fermé) */
-const dateInput = document.getElementById("date");
-const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
-dateInput.min = tomorrow.toISOString().slice(0, 10);
-
-const form = document.getElementById("form");
-function setError(el, msg) {
-  el.setAttribute("aria-invalid", msg ? "true" : "false");
-  document.getElementById(el.id + "-err").textContent = msg;
 }
-function validate() {
-  const errors = [];
-  const nom = form.nom, tel = form.tel;
-  const checks = [
-    [nom, nom.value.trim().length < 2 ? "Indiquez votre nom pour qu’on sache qui accueillir." : ""],
-    [tel, tel.value.replace(/[\s.\-]/g, "").match(/^(\+33|0)\d{9}$/) ? "" : "Numéro à 10 chiffres, par exemple 06 12 34 56 78."],
-    [select, select.value ? "" : "Choisissez une voiture, ou « Autre » si vous hésitez."],
-    [dateInput, (() => {
-      if (!dateInput.value) return "Choisissez un jour.";
-      if (dateInput.value < dateInput.min) return "Choisissez un jour à partir de demain.";
-      const d = new Date(dateInput.value + "T12:00").getDay();
-      return d === 0 || d === 1 ? "La concession est fermée le dimanche et le lundi. Choisissez un jour du mardi au samedi." : "";
-    })()],
+function setErr(el, msg) { el.setAttribute("aria-invalid", msg ? "true" : "false"); document.getElementById(el.id + "-err").textContent = msg; }
+function validateBook(f) {
+  const d = f.date;
+  const rules = [
+    [f.nom, f.nom.value.trim().length < 2 ? "Indiquez votre nom pour qu’on sache qui accueillir." : ""],
+    [f.tel, /^(\+33|0)\d{9}$/.test(f.tel.value.replace(/[\s.\-]/g, "")) ? "" : "Numéro à 10 chiffres, par exemple 06 12 34 56 78."],
+    [f.vehicule, f.vehicule.value ? "" : "Choisissez une voiture, ou « Autre » si vous hésitez."],
+    [d, !d.value ? "Choisissez un jour." : d.value < d.min ? "Choisissez un jour à partir de demain."
+      : [0, 1].includes(new Date(d.value + "T12:00").getDay()) ? "Fermé le dimanche et le lundi : choisissez un jour du mardi au samedi." : ""],
   ];
-  checks.forEach(([el, msg]) => { setError(el, msg); if (msg) errors.push(el); });
-  return errors;
+  rules.forEach(([el, m]) => setErr(el, m));
+  return rules.filter(r => r[1]).map(r => r[0]);
 }
-form.addEventListener("input", e => { if (e.target.getAttribute("aria-invalid") === "true") validate(); });
-form.addEventListener("submit", e => {
+resetBook();
+
+/* Newsletter */
+const news = document.getElementById("news");
+news.addEventListener("submit", e => {
   e.preventDefault();
-  const errors = validate();
-  if (errors.length) { errors[0].focus(); return; }
-  const btn = document.getElementById("submit");
-  btn.setAttribute("aria-busy", "true");
-  btn.insertAdjacentHTML("afterbegin", '<span class="spinner" aria-hidden="true"></span>');
-  btn.querySelector(".arrow").remove();
-  // Démo : à brancher sur le vrai service d’envoi
-  setTimeout(() => {
-    const car = STOCK.find(c => c.id === select.value);
-    const jour = new Intl.DateTimeFormat("fr-FR", { weekday: "long", day: "numeric", month: "long" }).format(new Date(dateInput.value + "T12:00"));
-    const zone = document.getElementById("essai-zone");
-    zone.innerHTML = `<div class="done" tabindex="-1" id="done">
-      <p>Essai demandé pour le ${jour}${car ? `, au volant de la ${car.name}` : ""}.</p>
-      <p>On vous appelle au ${form.tel.value.trim()} dans la journée pour fixer l’heure.</p>
-      <button type="button" onclick="location.reload()">Réserver un autre essai</button>
-    </div>`;
-    document.getElementById("done").focus();
-  }, 900);
+  const email = document.getElementById("email");
+  const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+  email.setAttribute("aria-invalid", ok ? "false" : "true");
+  document.getElementById("email-err").textContent = ok ? "" : "Adresse incomplète, par exemple prenom@exemple.fr.";
+  if (!ok) { email.focus(); return; }
+  news.innerHTML = `<p class="ok" tabindex="-1" id="news-ok">C’est noté. Prochain e-mail au prochain arrivage, envoyé à ${email.value.trim()}.</p>`;
+  document.getElementById("news-ok").focus();
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
-render("all");
 </script>
 </body>
 </html>
